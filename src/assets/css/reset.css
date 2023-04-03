@@ -43,11 +43,20 @@ input {
     font-family: Microsoft YaHei, Heiti SC, tahoma, arial, Hiragino Sans GB, "\5B8B\4F53", sans-serif
 }
 
+
+@font-face {
+    font-family: 'SmileySans';
+    src: url('../font/SmileySans-Oblique.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     /* CSS3 抗锯齿形 让文字显示的更加清晰 */
     -webkit-font-smoothing: antialiased;
     background-color: #fff;
-    font: 16px/1.5 Microsoft YaHei, Heiti SC, tahoma, arial, Hiragino Sans GB, "\5B8B\4F53", sans-serif;
+    font-family: 'SmileySans';
+    /* font: 16px/1.5 Microsoft YaHei, Heiti SC, tahoma, arial, Hiragino Sans GB, "\5B8B\4F53", sans-serif; */
     /* color: #666 */
 }
 
