@@ -25,7 +25,7 @@ const password = ref()
 </script>
 <style scoped>
 .login_box {
-    width: 23rem;
+    width: 20rem;
     height: 35.8rem;
     display: flex;
     flex-direction: column;
