@@ -23,7 +23,7 @@ const commodityData = {
 const props = defineProps(["commodityData"])
 
 function getImgUrl(src) {
-    return require("@/assets/images/" + src)
+    return require("@/public/images/" + src)
 }
 </script>
 <style scoped>

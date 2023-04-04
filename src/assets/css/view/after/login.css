@@ -1,0 +1,66 @@
+main {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    background-color: var(--color-white);
+}
+
+/* login_box start */
+.login_box {
+    position: relative;
+    width: 20rem;
+    height: 35rem;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-orange-100-85);
+    border-bottom-right-radius: 2rem;
+    padding-top: 8rem;
+}
+
+.login_box::before {
+    content: "";
+    z-index: 10;
+    position: absolute;
+    width: .7rem;
+    height: 1rem;
+    left: 0;
+    top: 2.8rem;
+    background-color: var(--color-orange-300);
+}
+
+.login_item {
+    margin-bottom: 1.8rem;
+}
+
+.login_item>input {
+    width: 15rem;
+    line-height: 2.8rem;
+    margin-right: .5rem;
+    padding-left: .5rem;
+    border-top-right-radius: .8rem;
+    border-bottom-right-radius: .8rem;
+}
+
+.login_item>span {
+    display: block;
+    margin-top: .5rem;
+    margin-left: .5rem;
+    font-weight: 600;
+    color: var(--color-orange-400);
+}
+
+.login_btn {
+    width: 12rem;
+    line-height: 2.3rem;
+    border: none;
+    /* border: 1px solid var(--color-orange-300); */
+    background-color: var(--color-orange-200);
+    color: var(--color-white);
+    font-size: var(--text-xl);
+    padding-right: 1.416rem;
+    border-top-right-radius: .8rem;
+    border-bottom-right-radius: .8rem;
+}
+
+/* login_box end */

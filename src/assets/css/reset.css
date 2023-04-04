@@ -40,7 +40,8 @@ a {
 button,
 input {
     /* "\5B8B\4F53" 就是宋体的意思 这样浏览器兼容性比较好 */
-    font-family: Microsoft YaHei, Heiti SC, tahoma, arial, Hiragino Sans GB, "\5B8B\4F53", sans-serif
+    /* font-family: Microsoft YaHei, Heiti SC, tahoma, arial, Hiragino Sans GB, "\5B8B\4F53", sans-serif */
+    font-family: 'SmileySans';
 }
 
 
@@ -78,6 +79,18 @@ body {
 
 .clearfix {
     *zoom: 1;
+}
+
+/* 关闭input边框 */
+
+.no_border input:focus {
+    border-style: none;
+    outline: none;
+}
+
+
+.no_border input {
+    border: none;
 }
 
 

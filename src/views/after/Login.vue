@@ -1,15 +1,21 @@
 <template>
     <Nav />
-    <main style="width: 100vw;height: 100vh; background-color: var(--color-white);">
+    <main>
         <div class="login_box">
-            <!-- <label>
-                <input v-model="user" />
+            <label class="login_item no_border">
+                <input v-model="user" /><br />
                 <span>账号输入有误</span>
             </label>
-            <label>
-                <input v-model="password" />
+            <label class="login_item no_border">
+                <input v-model="password" /><br />
                 <span>密码输入有误</span>
-            </label> -->
+            </label>
+            <label class="login_item">
+                <button class="login_btn">登录</button>
+            </label>
+            <label class="login_item">
+                <button class="login_btn">注册</button>
+            </label>
         </div>
     </main>
 </template>
@@ -24,24 +30,5 @@ const password = ref()
 
 </script>
 <style scoped>
-.login_box {
-    width: 20rem;
-    height: 35.8rem;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--color-orange-100-85);
-    border-bottom-right-radius: 2rem;
-    position: relative;
-}
-
-.login_box::before {
-    content: "";
-    z-index: 10;
-    position: absolute;
-    width: .7rem;
-    height: 1rem;
-    left: 0;
-    top: -1rem;
-    background-color: var(--color-orange-300);
-}
+@import url(../../assets/css/view/after/login.css);
 </style>

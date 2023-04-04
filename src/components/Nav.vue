@@ -10,6 +10,8 @@ nav {
     position: relative;
     height: 3.8rem;
     border-radius: 0 0 .8rem .8rem;
+    position: relative;
+    z-index: 10;
 }
 
 /* logo */
