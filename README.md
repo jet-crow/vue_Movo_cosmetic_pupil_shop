@@ -1,4 +1,4 @@
-# vue_students_choose_lodge
+# vue_Movo_cosmetic_pupil_shop
 
 ## Project setup
 ```
