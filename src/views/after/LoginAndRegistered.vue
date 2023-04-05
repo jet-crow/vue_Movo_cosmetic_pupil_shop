@@ -1,6 +1,6 @@
 <template>
     <main>
-        <Nav />
+        <Nav :isNotLogin="true" />
         <div class="banner">
             <img src="../../assets/images/loginBg.jpg" alt="" srcset="">
         </div>
