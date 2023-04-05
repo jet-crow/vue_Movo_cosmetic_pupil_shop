@@ -14,6 +14,11 @@ const routes = [
     name: 'loginAndRegistered',
     component: LoginAndRegistered
   },
+  {
+    path: '/index',
+    name: 'index',
+    component: () => import('../views/after/Index.vue')
+  }
 ]
 
 const router = createRouter({

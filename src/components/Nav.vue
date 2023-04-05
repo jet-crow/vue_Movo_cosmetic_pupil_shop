@@ -4,7 +4,7 @@
             <span>美瞳选购平台</span>
             <h3>movo</h3>
         </div>
-        <div class="options" v-if="isNotLogin == flase">
+        <div class="options" v-if="!isNotLogin">
             <van-icon name="cart-o" />
             <span>name</span>
             <van-icon name="upgrade" />
