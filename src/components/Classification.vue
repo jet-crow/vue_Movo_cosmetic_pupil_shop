@@ -1,23 +1,23 @@
 <template>
     <div class="menu">
         <div class="menu_item">
-            <img src="../../public/images/menu/5.png" />
+            <img src="../assets/images/menu/5.png" />
             <p>全部</p>
         </div>
         <div class="menu_item">
-            <img src="../../public/images/menu/1.png" />
+            <img src="../assets/images/menu/1.png" />
             <p>日抛</p>
         </div>
         <div class="menu_item">
-            <img src="../../public/images/menu/2.png" />
+            <img src="../assets/images/menu/2.png" />
             <p>月抛</p>
         </div>
         <div class="menu_item">
-            <img src="../../public/images/menu/3.png" />
+            <img src="../assets/images/menu/3.png" />
             <p>季抛</p>
         </div>
         <div class="menu_item">
-            <img src="../../public/images/menu/4.png" />
+            <img src="../assets/images/menu/4.png" />
             <p>半年抛</p>
         </div>
     </div>

@@ -2,8 +2,8 @@
     <Nav />
     <aside>
         <div class="banner">
-            <video webkit-playsinline="true" poster="../../../public/images/introduce.jpg"
-                src="../../../public/video/introduce.mp4" autoplay muted></video>
+            <video webkit-playsinline="true" poster="../../assets/images/introduce.jpg"
+                src="../../assets/video/introduce.mp4" autoplay muted></video>
         </div>
         <!-- 分类 -->
         <Classification/>

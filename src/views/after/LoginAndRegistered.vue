@@ -2,7 +2,7 @@
     <main>
         <Nav :isNotLogin="true" />
         <div class="banner">
-            <img src="../../../public/images/loginBg.jpg" alt="" srcset="">
+            <img src="../../assets/images/loginBg.jpg" alt="" srcset="">
         </div>
         <div class="form_box">
             <label class="form_item no_border">
