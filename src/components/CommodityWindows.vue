@@ -24,8 +24,6 @@ const props = defineProps(["commodityData"])
 </script>
 <style scoped>
 .box {
-    border: 1px solid var(--color-white);
-    border-top: none;
     width: 100vw;
     position: relative;
     border-bottom-left-radius: 1.8rem;
