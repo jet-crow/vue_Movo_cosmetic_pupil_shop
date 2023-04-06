@@ -93,7 +93,8 @@ body {
 .no_border input {
     border: none;
 }
-.bg_color{
+
+.bg_color {
     background-color: #fcfbf2;
 }
 
@@ -112,6 +113,8 @@ body {
     --color-orange-200: #FF7E33;
     --color-orange-300: #FA5E1F;
     --color-orange-400: #7A0103;
+    /* Vant主题样式 */
+    --van-blue: var(--color-orange-300);
     /* 字体大小 */
     --text-xs: 0.75rem;
     --text-sm: 0.875rem;

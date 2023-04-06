@@ -42,6 +42,11 @@ const routes = [
     path: '/home',
     name: 'home',
     component: () => import('../views/after/Home.vue')
+  },
+  {
+    path: '/addressList',
+    name: 'addressList',
+    component: () => import('../views/after/AddressList.vue')
   }
 
 ]
