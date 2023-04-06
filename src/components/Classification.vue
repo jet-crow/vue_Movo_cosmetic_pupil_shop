@@ -23,16 +23,28 @@
     </div>
 </template>
 <script setup>
+import router from '@/router';
 import { defineEmits } from 'vue'
 
 const props = defineProps(['chose']);
 const emit = defineEmits(['updateChose'])//注册方法
 function choseItem(event) {
-    if (props.chose == undefined) return;
     let menu_item = event.target.closest('.menu_item');
     if (menu_item == null) return;
-
-    emit('updateChose', menu_item.dataset.chose);
+    let chose = menu_item.dataset.chose
+    //为空即跳转
+    if (props.chose == undefined) {
+        router.push({
+            path: 'sectionGoods',
+            query: { chose: chose }
+        })
+        return;
+    };
+    //否则就切换
+    emit('updateChose', chose);
+    router.replace({
+        query: { chose: chose }
+    })
 }
 </script>
 
