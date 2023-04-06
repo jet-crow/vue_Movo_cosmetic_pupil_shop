@@ -1,12 +1,12 @@
 <template>
     <div class="box">
         <van-swipe :autoplay="3000" :show-indicators="false" class="outer_layer"
-            :style="` background-image: url(${getImgUrl(commodityData.bottomImg)});`">
+            :style="` background-image: url(${$getImgUrl(commodityData.bottomImg)});`">
             <van-swipe-item v-for="(item, index) in commodityData.itemImg">
-                <img class="item" :src="getImgUrl(item)" />
+                <img class="item" :src="$getImgUrl(item)" />
             </van-swipe-item>
         </van-swipe>
-        <div class="outer_layer_after" :style="` background-image: url(${getImgUrl(commodityData.topImg)});`"></div>
+        <div class="outer_layer_after" :style="` background-image: url(${$getImgUrl(commodityData.topImg)});`"></div>
     </div>
 </template>
 
@@ -21,10 +21,6 @@ const commodityData = {
 }
  */
 const props = defineProps(["commodityData"])
-
-function getImgUrl(src) {
-    return require("@/assets/images/" + src)
-}
 </script>
 <style scoped>
 .box {
