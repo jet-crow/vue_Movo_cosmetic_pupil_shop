@@ -48,7 +48,7 @@ const goodsData = reactive([
 .good_name {
     margin-top: .5rem;
     padding-left: .6rem;
-    width: 11rem;
+    width: 10rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

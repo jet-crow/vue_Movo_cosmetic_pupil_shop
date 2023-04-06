@@ -69,6 +69,11 @@
             <img src="@/assets/images/注意事项2.jpg" alt="">
         </section>
     </main>
+    <!-- 提交订单按钮 -->
+    <footer>
+        <div class="add_cart">加入购物车</div>
+        <div class="buy">购买</div>
+    </footer>
 </template>
 <script setup>
 import CommodityWindows from '@/components/CommodityWindows.vue';

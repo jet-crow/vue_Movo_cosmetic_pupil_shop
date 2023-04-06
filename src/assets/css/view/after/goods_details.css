@@ -213,3 +213,32 @@ main section{
     vertical-align:top;
 }
 /* goods_details End */
+
+/* footer Start*/
+/* 提交订单按钮 */
+footer{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    z-index: 99;
+    border-top-left-radius: 1rem;
+    background-color: var(--color-brown-dark);
+    /* border-top: .2rem solid var(--color-orange-400); */
+    border-left: .2rem solid var(--color-orange-400);
+}
+footer .add_cart,
+footer .buy{
+    font-size: var(--text-2xl);
+    color: var(--color-white);
+    padding: .6rem 1rem;
+    
+}
+
+footer .buy{
+    background-color: var(--color-brown-light);
+    color: var(--color-balck);
+    border-left: .2rem solid var(--color-orange-400);
+    border-top-left-radius: 1rem;
+}
+/* footer End*/

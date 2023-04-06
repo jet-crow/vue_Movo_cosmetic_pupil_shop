@@ -1,15 +1,16 @@
 main {
     width: 100vw;
     height: 100vh;
-    background-color: #DCD3CE;
+    background-color: #E1B8A1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 .banner{
     flex-grow: 1;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-top: -1rem;
+    /* margin-top: .4rem; */
+    /* margin-bottom: .4rem; */
 }
 .banner img{
     width: 100%;
