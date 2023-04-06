@@ -47,6 +47,11 @@ const routes = [
     path: '/addressList',
     name: 'addressList',
     component: () => import('../views/after/AddressList.vue')
+  },
+  {
+    path: '/myOrder',
+    name: 'myOrder',
+    component: () => import('../views/after/MyOrder.vue')
   }
 
 ]

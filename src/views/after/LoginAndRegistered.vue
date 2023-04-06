@@ -38,7 +38,7 @@
 <script setup>
 import Nav from '@/components/Nav.vue'
 import { ref } from 'vue'
-import { useRouter } from 'vue-router';
+import { useRouter } from 'vue-router'
 
 //data
 const user = ref();
