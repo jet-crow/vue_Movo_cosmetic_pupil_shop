@@ -1,0 +1,42 @@
+.cart_box {
+    margin-top: 1rem;
+    min-height: calc(100vh - 4.8rem);
+}
+
+.cart_item {
+    border-bottom: 1px dashed var(--color-orange-200);
+}
+
+.cart_item:last-child {
+    border-bottom: none;
+}
+
+.goods-card {
+    margin: 0;
+    padding-left: 2rem;
+}
+
+.delete-button {
+    height: 100%;
+}
+
+.cart_item_checkbox {
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    z-index: 99;
+    top: calc(50% - 10px);
+    left: .3rem;
+}
+
+.cart_item_stepper {
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 99;
+}
+
+/* 支付订单 */
+.submit_bar {}

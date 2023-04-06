@@ -19,6 +19,16 @@ const routes = [
     component: () => import('../views/after/Index.vue')
   },
   {
+    path: '/sectionGoods',
+    name: 'sectionGoods',
+    component: () => import('../views/after/SectionGoods.vue')
+  },
+  {
+    path: '/shoppingCart',
+    name: 'shoppingCart',
+    component: () => import('../views/after/ShoppingCart.vue')
+  },
+  {
     path: '/goodsdetails',
     name: 'goodsdetails',
     component: () => import('../views/after/GoodsDetails.vue')
@@ -29,6 +39,7 @@ const routes = [
     name: 'home',
     component: () => import('../views/after/Home.vue')
   }
+
 ]
 
 const router = createRouter({
