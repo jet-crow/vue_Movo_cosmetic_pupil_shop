@@ -24,16 +24,20 @@ const routes = [
     component: () => import('../views/after/SectionGoods.vue')
   },
   {
+    path: '/goodsdetails',
+    name: 'goodsdetails',
+    component: () => import('../views/after/GoodsDetails.vue')
+  },
+  {
     path: '/shoppingCart',
     name: 'shoppingCart',
     component: () => import('../views/after/ShoppingCart.vue')
   },
   {
-    path: '/goodsdetails',
-    name: 'goodsdetails',
-    component: () => import('../views/after/GoodsDetails.vue')
-  }
-  ,
+    path: '/confirmOrder',
+    name: 'confirmOrder',
+    component: () => import('../views/after/ConfirmOrder.vue')
+  },
   {
     path: '/home',
     name: 'home',

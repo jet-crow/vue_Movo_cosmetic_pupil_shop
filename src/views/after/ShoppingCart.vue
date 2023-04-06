@@ -4,7 +4,7 @@
         <van-swipe-cell class="cart_item" v-for="i in 5">
             <van-checkbox v-model="checked" class="cart_item_checkbox" checked-color="#FF7E33d6"></van-checkbox>
             <van-card price="2.00" desc="描述信息" title="商品标题" class="goods-card"
-                thumb="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg" />
+                :thumb="$getImgUrl('主图/日抛1_主图.png')" />
             <template #right>
                 <van-button square text="删除" type="danger" class="delete-button" />
             </template>

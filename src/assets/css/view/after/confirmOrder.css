@@ -1,0 +1,46 @@
+nav {
+    background-color: var(--color-orange-300);
+    position: relative;
+    height: 2rem;
+    padding: 0 .5rem;
+    z-index: 10;
+    color: var(--color-white);
+}
+
+.back {
+    top: calc(50% - 10px);
+    position: absolute;
+    font-size: var(--text-xl);
+}
+
+.title {
+    text-align: center;
+    line-height: 2.25rem;
+}
+
+
+/* main start  */
+main {
+    min-height: calc(100vh - 7rem);
+}
+
+.info_box {
+    margin-top: .5rem;
+    border-radius: .8rem;
+    background-color: white;
+}
+
+.order_info {
+    margin-top: .8rem;
+}
+
+.order_info_item {
+    padding: .5rem;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.order_info .arrow {
+    position: absolute;
+}
