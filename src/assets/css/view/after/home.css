@@ -1,0 +1,39 @@
+main section{
+    margin-top: 0.2rem;
+    border-radius: 0.6rem;
+    padding: 1rem;
+    color: #5c3009;
+    background-color: var(--color-brown-light);
+
+}
+
+main .my_info .name{
+    font-size: var(--text-2xl);
+}
+main .my_info .tel{
+    /* padding-bottom: .2rem; */
+    font-size: var(--text-base);
+    border-bottom: .1rem solid var(--color-brown-dark);
+}
+
+main .goods_state ul{
+    display: flex;
+    justify-content: space-around;
+}
+
+main .goods_state ul li{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: var(--text-5xl);
+    color: #5c3009;
+}
+main .goods_state ul li span{
+    font-size: var(--text-base);
+}
+
+main .address{
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--text-xl);
+}
