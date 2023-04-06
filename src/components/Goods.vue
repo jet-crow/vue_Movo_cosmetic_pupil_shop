@@ -24,12 +24,15 @@ const goodsData = reactive([
 
 <style scoped>
 .goods_box {
+    margin-top: 1rem;
+    padding: 0 1rem;
     display: grid;
     grid-template-columns: auto auto;
+    grid-gap: 1rem;
 }
 
 .good {
-    margin: 1rem 1rem 0 1rem;
+    /* margin: 1rem 1rem 0 1rem; */
     box-sizing: content-box;
 }
 
@@ -55,4 +58,5 @@ const goodsData = reactive([
     margin-left: .6rem;
     color: var(--color-orange-400);
     border: 500;
-}</style>
+}
+</style>

@@ -23,8 +23,13 @@ const routes = [
     path: '/sectionGoods',
     name: 'sectionGoods',
     component: () => import('../views/after/SectionGoods.vue')
+  },
+  {
+    path: '/shoppingCart',
+    name: 'shoppingCart',
+    component: () => import('../views/after/ShoppingCart.vue')
   }
-  
+
 ]
 
 const router = createRouter({
