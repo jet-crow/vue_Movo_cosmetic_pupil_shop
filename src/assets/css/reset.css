@@ -92,6 +92,9 @@ body {
 .no_border input {
     border: none;
 }
+.bg_color{
+    background-color: #fcfbf2;
+}
 
 
 :root {

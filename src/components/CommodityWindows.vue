@@ -54,7 +54,7 @@ function getImgUrl(src) {
 
 .outer_layer_after {
     position: absolute;
-    z-index: 99;
+    z-index: 10;
     top: 0;
     width: 100vw;
     height: 100%;
