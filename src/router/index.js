@@ -1,7 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import LoginAndRegistered from "../views/after/LoginAndRegistered.vue"
 
-
 //路由配置
 // {
 //   path: '/about',
@@ -18,6 +17,17 @@ const routes = [
     path: '/index',
     name: 'index',
     component: () => import('../views/after/Index.vue')
+  },
+  {
+    path: '/goodsdetails',
+    name: 'goodsdetails',
+    component: () => import('../views/after/GoodsDetails.vue')
+  }
+  ,
+  {
+    path: '/home',
+    name: 'home',
+    component: () => import('../views/after/Home.vue')
   }
 ]
 
