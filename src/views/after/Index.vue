@@ -2,7 +2,7 @@
     <Nav />
     <aside>
         <div class="introduce">
-            <video webkit-playsinline="true" :poster="$getImgUrl('introduce.jpg')"
+            <video webkit-playsinline="true" @click="play" :poster="$getImgUrl('introduce.jpg')"
                 src="../../assets/video/introduce.mp4" autoplay muted></video>
         </div>
         <!-- 分类 -->
@@ -32,6 +32,11 @@ const commodityData = {
     bottomImg: "日抛1/日抛1_0005_底图.png",
     itemImg: ["日抛1/日抛1_0001_伽罗棕.png",
         "日抛1/日抛1_0002_胶片棕.png", "日抛1/日抛1_0003_丝绒棕.png", "日抛1/日抛1_0004_柔咖棕.png"]
+}
+
+//点击播放
+const play = (e) => {
+    e.target.play();
 }
 </script>
 

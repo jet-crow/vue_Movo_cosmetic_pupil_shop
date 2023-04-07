@@ -72,7 +72,7 @@
     <!-- 提交订单按钮 -->
     <footer>
         <div class="add_cart">加入购物车</div>
-        <div class="buy">购买</div>
+        <div class="buy"  @click="$router.push('/confirmOrder')">购买</div>
     </footer>
 </template>
 <script setup>

@@ -5,7 +5,7 @@
             <p class="name">Febird</p>
             <p class="tel">userID : 13410086110</p>
         </section>
-        <section class="goods_state">
+        <section class="goods_state"  @click="$router.push('/myOrder')">
             <ul>
                 <li>
                     <van-icon name="coupon" />
@@ -25,7 +25,7 @@
                 </li>
             </ul>
         </section>
-        <section class="address">
+        <section class="address"  @click="$router.push('/addressList')">
             <span>地址管理</span>
             <van-icon name="arrow" />
         </section>

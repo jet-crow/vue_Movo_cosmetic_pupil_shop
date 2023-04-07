@@ -1,6 +1,6 @@
 <template>
     <div class="goods_box">
-        <div class="good" v-for="i in 8">
+        <div class="good" v-for="i in 8" @click="$router.push('/goodsdetails')">
             <img :src="$getImgUrl(goodsData[0].image)" />
             <p class="good_name">{{ goodsData[0].name }}</p>
             <p class="good_price">￥{{ goodsData[0].price }}</p>
@@ -8,6 +8,7 @@
     </div>
 </template>
 <script setup>
+import router from '@/router';
 import { reactive } from 'vue'
 
 const goodsData = reactive([
