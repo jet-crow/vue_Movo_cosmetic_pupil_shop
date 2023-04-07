@@ -3,10 +3,13 @@ main section{
     border-radius: 0.6rem;
     padding: 1rem;
     color: #5c3009;
-    background-color: var(--color-brown-light);
+    /* background-color: var(--color-brown-light); */
+    background-color: #ffe9d0;
 
 }
-
+main{
+    min-height: calc(100vh - 3.8rem);
+}
 main .my_info .name{
     font-size: var(--text-2xl);
 }
