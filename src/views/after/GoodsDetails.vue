@@ -65,8 +65,8 @@
         </section>
         <section class="goods_details">
             <img v-for="(item, index) in GoodsDetailsData.itemImg" :src="$getImgUrl(item)" />
-            <img src="@/assets/images/注意事项1.jpg" alt="">
-            <img src="@/assets/images/注意事项2.jpg" alt="">
+            <img :src="$getImgUrl('注意事项1.jpg')" alt="">
+            <img :src="$getImgUrl('注意事项2.jpg')" alt="">
         </section>
     </main>
     <!-- 提交订单按钮 -->

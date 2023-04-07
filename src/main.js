@@ -7,7 +7,8 @@ const app = createApp(App);
 /* 全局方法 */
 //获取本地图片
 app.config.globalProperties.$getImgUrl = (src) => {
-    return require("@/assets/images/" + src)
+    // return require("./images/" + src)
+    return "./images/" + src
 }
 app.use(router);
 app.mount('#app');

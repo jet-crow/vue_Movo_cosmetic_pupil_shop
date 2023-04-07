@@ -33,7 +33,7 @@ const props = defineProps(["commodityData"])
 
 .outer_layer {
     width: inherit;
-    /* background-image: url(@/assets/images/日抛1/日抛1_0005_底图.png); */
+    /* background-image: url(日抛1/日抛1_0005_底图.png); */
     background-repeat: no-repeat;
     background-size: 100%;
 }
@@ -52,7 +52,7 @@ const props = defineProps(["commodityData"])
     top: 0;
     width: 100vw;
     height: 100%;
-    /* background-image: url(@/assets/images/日抛1/日抛1_0000_顶图.png); */
+    /* background-image: url(日抛1/日抛1_0000_顶图.png); */
     background-size: 100%;
     background-repeat: no-repeat;
     pointer-events: none;

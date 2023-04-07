@@ -2,7 +2,7 @@
     <Nav />
     <aside>
         <div class="introduce">
-            <video webkit-playsinline="true" poster="../../assets/images/introduce.jpg"
+            <video webkit-playsinline="true" :poster="$getImgUrl('introduce.jpg')"
                 src="../../assets/video/introduce.mp4" autoplay muted></video>
         </div>
         <!-- 分类 -->

@@ -1,23 +1,23 @@
 <template>
     <div class="menu" @click="choseItem">
         <div class="menu_item" data-chose="0" :class="chose == 0 ? 'menu_item_selected' : ''">
-            <img src="../assets/images/menu/5.png" />
+            <img :src="$getImgUrl('menu/5.png')" />
             <p>全部</p>
         </div>
         <div class="menu_item" data-chose="1" :class="chose == 1 ? 'menu_item_selected' : ''">
-            <img src="../assets/images/menu/1.png" />
+            <img :src="$getImgUrl('menu/1.png')" />
             <p>日抛</p>
         </div>
         <div class="menu_item" data-chose="2" :class="chose == 2 ? 'menu_item_selected' : ''">
-            <img src="../assets/images/menu/2.png" />
+            <img :src="$getImgUrl('menu/2.png')" />
             <p>月抛</p>
         </div>
         <div class="menu_item" data-chose="3" :class="chose == 3 ? 'menu_item_selected' : ''">
-            <img src="../assets/images/menu/3.png" />
+            <img :src="$getImgUrl('menu/3.png')" />
             <p>季抛</p>
         </div>
         <div class="menu_item" data-chose="4" :class="chose == 4 ? 'menu_item_selected' : ''">
-            <img src="../assets/images/menu/4.png" />
+            <img :src="$getImgUrl('menu/4.png')" />
             <p>半年抛</p>
         </div>
     </div>

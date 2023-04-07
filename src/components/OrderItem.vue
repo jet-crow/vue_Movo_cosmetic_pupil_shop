@@ -1,7 +1,7 @@
 <template>
     <div class="order_item">
         <van-card num="2" price="2.00" desc="描述信息" title="商品标题"
-            thumb="https://fastly.jsdelivr.net/npm/@vant/assets/ipad.jpeg" />
+            :thumb="$getImgUrl('主图/日抛1_主图.png')" />
         <p style="text-align: right; line-height: 3rem;margin-right: .5rem;">
             <span style="color:#999;">含运费险服务</span>
             需付款￥6.40
