@@ -1,0 +1,24 @@
+/* 导航栏 */
+nav {
+    background-color: var(--color-orange-300);
+    position: relative;
+    height: 2rem;
+    padding: 0 .5rem;
+    z-index: 10;
+    color: var(--color-white);
+}
+
+.back {
+    top: calc(50% - 10px);
+    position: absolute;
+    font-size: var(--text-xl);
+}
+
+.title {
+    text-align: center;
+    line-height: 2.25rem;
+}
+
+.box {
+    margin-top: .3rem;
+}
