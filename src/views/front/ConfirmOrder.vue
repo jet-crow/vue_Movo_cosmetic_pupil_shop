@@ -38,4 +38,4 @@ function onSubmit() {
 }
 </script>
 
-<style scoped src="@/assets/css/view/after/confirmOrder.css"></style>
+<style scoped src="@/assets/css/view/front/confirmOrder.css"></style>

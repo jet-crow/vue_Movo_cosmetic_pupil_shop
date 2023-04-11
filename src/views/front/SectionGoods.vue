@@ -22,4 +22,4 @@ function updateChose(data) {
     chose.value = data
 }
 </script>
-<style scoped src="@/assets/css/view/after/sectionGoods.css"></style>
+<style scoped src="@/assets/css/view/front/sectionGoods.css"></style>

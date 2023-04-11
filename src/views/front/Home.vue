@@ -35,7 +35,7 @@
 <script setup>
 import Nav from '@/components/Nav.vue'
 </script>
-<style scoped src="../../assets/css/view/after/home.css"></style>
+<style scoped src="../../assets/css/view/front/home.css"></style>
 <style scoped>
 
 </style>

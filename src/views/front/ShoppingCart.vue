@@ -31,4 +31,4 @@ function onSubmit() {
 </script>
 
 
-<style scoped src="@/assets/css/view/after/shoppingCart.css"></style>
+<style scoped src="@/assets/css/view/front/shoppingCart.css"></style>

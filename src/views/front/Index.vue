@@ -41,4 +41,4 @@ const play = (e) => {
 </script>
 
 
-<style scoped src="@/assets/css/view/after/index.css"></style>
+<style scoped src="@/assets/css/view/front/index.css"></style>

@@ -67,4 +67,4 @@ const onChangeDetail = (val) => {
 
 </script>
 
-<style scoped src="@/assets/css/view/after/addressList.css"></style>
+<style scoped src="@/assets/css/view/front/addressList.css"></style>

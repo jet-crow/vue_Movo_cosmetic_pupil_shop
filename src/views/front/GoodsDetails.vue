@@ -132,5 +132,5 @@ function choseGoods(e) {
 </script>
 
 
-<style scoped src="../../assets/css/view/after/goods_details.css"></style>
+<style scoped src="../../assets/css/view/front/goods_details.css"></style>
 <style scoped></style>

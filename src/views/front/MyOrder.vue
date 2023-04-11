@@ -23,7 +23,7 @@ import OrderItem from '@/components/OrderItem.vue'
 
 </script>
 
-<style scoped src="@/assets/css/view/after/myOrder.css"></style>
+<style scoped src="@/assets/css/view/front/myOrder.css"></style>
 <style>
 .box .van-tabs__nav--card {
     border-radius: 0.6rem !important;

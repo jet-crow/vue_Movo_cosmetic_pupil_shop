@@ -59,4 +59,4 @@ function jump() {
     }
 }
 </script>
-<style scoped src="../../assets/css/view/after/form.css"></style>
+<style scoped src="../../assets/css/view/front/form.css"></style>
