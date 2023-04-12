@@ -63,9 +63,9 @@ const tableData = [
 
     },
     {
-        uid:1,
-        user:13911111112,
-        username:"Febird",
+        uid:2,
+        user:13911111113,
+        username:"Febird1",
         password:123
 
     }
@@ -74,7 +74,9 @@ const tableData = [
 const search = ref('')
 const filterTableData = computed(() =>
         tableData.filter((data) => !search.value ||
-                data.name.toLowerCase().includes(search.value.toLowerCase()))
+                (data.uid+"").includes(search.value)||
+                (data.user+"").includes(search.value)||
+                (data.username+"").includes(search.value))
 )
 const handleEdit = (index, row) => {
     console.log(index, row)
