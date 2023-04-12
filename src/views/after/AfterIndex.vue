@@ -1,6 +1,6 @@
 <template>
-    <el-row class="tac">
-        <el-col :span="5" class="menu_box">
+    <main class="tac">
+        <div class="menu_box">
             <Logo/>
             <el-menu default-active="goodsManagement"
                      :router="true"
@@ -17,7 +17,7 @@
                     </el-icon>
                     <span>商品管理</span>
                 </el-menu-item>
-                <el-menu-item index="goodsManagement">
+                <el-menu-item index="orderManagement">
                     <el-icon>
                         <setting/>
                     </el-icon>
@@ -25,11 +25,11 @@
                 </el-menu-item>
             </el-menu>
             <el-button type="warning" plain class="exit">退出</el-button>
-        </el-col>
-        <el-col :span="19">
+        </div>
+        <div class="view_item">
             <router-view/>
-        </el-col>
-    </el-row>
+        </div>
+    </main>
 </template>
 
 <script setup>
@@ -47,7 +47,7 @@ const handleClose = (key, keyPath) => {
 </script>
 <style scoped>
 .tac {
-    min-height: 100vh;
+    display: flex;
 }
 
 .menu_box {
@@ -55,6 +55,13 @@ const handleClose = (key, keyPath) => {
     background-color: white;
     padding-top: 4rem;
     position: relative;
+    width: 180px;
+    min-width: 180px;
+}
+
+.view_item {
+    flex: 1;
+    padding:4px;
 }
 
 .exit {
