@@ -76,7 +76,7 @@
                 </li>
                 <li>
                     <span>详情页图：{{ goodDetails.imgDetailsFigure }}</span>
-                    <!-- 图片 -->
+                    <!-- 图片1 -->
 
                 </li>
                 <li>
