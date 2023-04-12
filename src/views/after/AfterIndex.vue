@@ -1,31 +1,32 @@
 <template>
     <el-row class="tac">
-        <el-col :span="4" class="menu_box">
-            <h5 class="mb-2">Default colors</h5>
-            <el-menu default-active="1" @open="handleOpen" @close="handleClose">
-                <el-menu-item index="1">
+        <el-col :span="5" class="menu_box">
+            <Logo/>
+            <el-menu default-active="goodsManagement"
+                     :router="true"
+                     @open="handleOpen" @close="handleClose">
+                <el-menu-item index="goodsManagement">
                     <el-icon>
-                        <setting />
+                        <setting/>
                     </el-icon>
                     <span>用户管理</span>
                 </el-menu-item>
-                <el-menu-item index="2">
+                <el-menu-item index="goodsManagement">
                     <el-icon>
-                        <setting />
+                        <setting/>
                     </el-icon>
                     <span>商品管理</span>
                 </el-menu-item>
-                <el-menu-item index="3">
+                <el-menu-item index="goodsManagement">
                     <el-icon>
-                        <setting />
+                        <setting/>
                     </el-icon>
                     <span>订单管理</span>
                 </el-menu-item>
             </el-menu>
-            <el-button type="warning" plain>退出</el-button>
+            <el-button type="warning" plain class="exit">退出</el-button>
         </el-col>
-        <el-col :span="20">
-            1
+        <el-col :span="19">
             <router-view/>
         </el-col>
     </el-row>
@@ -35,6 +36,8 @@
 import {
     Setting,
 } from '@element-plus/icons-vue'
+import Logo from "@/components/Logo.vue";
+
 const handleOpen = (key, keyPath) => {
     console.log(key, keyPath)
 }
@@ -50,5 +53,13 @@ const handleClose = (key, keyPath) => {
 .menu_box {
     min-height: 100vh;
     background-color: white;
+    padding-top: 4rem;
+    position: relative;
+}
+
+.exit {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
 }
 </style>
