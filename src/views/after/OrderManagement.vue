@@ -7,7 +7,7 @@
     <main>
         <ul>
             <li>
-                <el-input v-model="search" size="small" placeholder="Type to search" />
+                <el-input v-model="search" size="big" placeholder="Type to search" />
             </li>
             <li v-for="(item, index) in filterTableData">
                 <div class="box_top">
