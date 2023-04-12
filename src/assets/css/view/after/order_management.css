@@ -1,7 +1,8 @@
+
 main{
     height: 100vh;
     overflow : auto;
-    min-width: 1200px;
+    min-width: 600px;
 }
 main ul li{
     background-color: var(--color-white);
