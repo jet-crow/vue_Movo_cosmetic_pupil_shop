@@ -20,7 +20,8 @@
 <script setup>
 import Nav from '@/components/Nav.vue'
 import OrderItem from '@/components/OrderItem.vue'
-
+import { ref } from 'vue';
+const active = ref(0);
 </script>
 
 <style scoped src="@/assets/css/view/front/myOrder.css"></style>

@@ -57,8 +57,18 @@ const routes = [
     path: '/admin/login',
     name: 'login',
     component: () => import('../views/after/Login.vue')
+  },
+  {
+    path: '/admin',
+    name: 'afterIndex',
+    component: () => import('../views/after/AfterIndex.vue'),
+    children:[
+      {
+        path:'goodsManagement',
+        component: () => import('../views/after/GoodsManagement.vue')
+      }
+    ]
   }
-
 ]
 
 const router = createRouter({
