@@ -5,32 +5,34 @@
         </template>
     </el-page-header>
     <main>
-        <el-button type="warning" plain class="add_item">添加商品</el-button>
-        <el-table :data="filterTableData">
-            <el-table-column label="图片" prop="img" align="center">
+        <el-table :data="filterTableData" border>
+            <el-table-column label="图片" prop="img" align="center" width="120">
                 <template #default="scope">
-                    1
+                    <el-image :src="$getImgUrl(scope.row.img)"></el-image>
                 </template>
             </el-table-column>
-            <el-table-column label="商品名称" prop="name" align="center"/>
+            <el-table-column label="商品名称" prop="name" align="center" width="250"/>
             <el-table-column label="描述" prop="describe" align="center"/>
-            <el-table-column label="价格" prop="price" align="center"/>
-            <el-table-column align="right">
+            <el-table-column label="价格" prop="price" align="center" width="100"/>
+            <el-table-column align="right" width="200">
                 <template #header>
-                    <el-input v-model="search" size="small" placeholder="Type to search"/>
+                    <div class="function_header">
+                        <el-button type="warning" size="small" plain class="add_item">添加商品</el-button>
+                        <el-input v-model="search" size="small" placeholder="Type to search"/>
+                    </div>
                 </template>
                 <template #default="scope">
-                    <el-button size="small" @click="handleEdit(scope.$index, scope.row)"
-                    >Edit
-                    </el-button
+                    <el-button @click="handleEdit(scope.$index, scope.row)">
+                        Edit
+                    </el-button>
+                    <el-popconfirm title="Are you sure to delete this?"
+                    @confirm="handleDelete(scope.$index, scope.row)"
                     >
-                    <el-button
-                            size="small"
-                            type="danger"
-                            @click="handleDelete(scope.$index, scope.row)"
-                    >Delete
-                    </el-button
-                    >
+                        <template #reference>
+                            <el-button type="danger">Delete</el-button>
+                        </template>
+                    </el-popconfirm>
+
                 </template>
             </el-table-column>
         </el-table>
@@ -39,6 +41,7 @@
 
 <script setup>
 import {computed, ref} from 'vue'
+
 
 const tableData = [
     {
@@ -69,30 +72,36 @@ const tableData = [
 
 const search = ref('')
 const filterTableData = computed(() =>
-        tableData.filter(
-                (data) =>
-                        !search.value ||
-                        data.name.toLowerCase().includes(search.value.toLowerCase())
-        )
+        tableData.filter((data) => !search.value ||
+                data.name.toLowerCase().includes(search.value.toLowerCase()))
 )
 const handleEdit = (index, row) => {
     console.log(index, row)
 }
 const handleDelete = (index, row) => {
-    console.log(index, row)
+    console.log(index, row);
 }
 const goBack = () => {
     console.log('go back')
 }
+
+/*是否删除*/
 </script>
 
 <style scoped>
 main {
     padding: 20px;
+    position: relative;
+    width: 1200px;
+    margin: 0 auto;
 }
 
 .add_item {
-    float: right;
-    margin-bottom: 5px;
+    position: relative;
+    margin-right: 10px;
+}
+
+.function_header {
+    display: flex;
 }
 </style>
