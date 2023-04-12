@@ -5,7 +5,7 @@
             <el-menu default-active="goodsManagement"
                      :router="true"
                      @open="handleOpen" @close="handleClose">
-                <el-menu-item index="goodsManagement">
+                <el-menu-item index="userManagement">
                     <el-icon>
                         <setting/>
                     </el-icon>

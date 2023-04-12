@@ -70,6 +70,10 @@ const routes = [
         path: 'orderManagement',
         component: () => import('../views/after/OrderManagement.vue')
       }
+      ,{
+        path: 'userManagement',
+        component: () => import('../views/after/UserManagement.vue')
+      }
     ]
   }
 ]
