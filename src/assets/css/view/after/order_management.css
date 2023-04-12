@@ -1,0 +1,72 @@
+main{
+    height: 100vh;
+    overflow : auto;
+    min-width: 1200px;
+}
+main ul li{
+    background-color: var(--color-white);
+    margin: 20px;
+    padding: 10px;
+    font-size: var(--text-xl);
+    border-radius: 10px;
+    border: 2px solid var(--color-orange-100);
+}
+main ul li .box_top{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    /* background-color: bisque; */
+    font-size: var(--text-base);
+
+}
+main ul li .box_bottom{
+    display: flex;
+    
+}
+main ul li .box_bottom .box_bottom_left1{
+    padding-right: 10px;
+}
+main ul li .box_bottom .box_bottom_left1 img{
+    vertical-align: top;
+    object-fit: cover;
+    width: 120px;
+    border-radius: 10px;
+}
+
+main ul li .box_bottom .box_bottom_empty{
+    flex: 1;
+}
+
+main ul li .box_bottom .box_bottom_left2{
+    font-size: var(--text-2xl);
+    padding-top: 6px;
+}
+
+main ul li .box_bottom .box_bottom_left2 span{
+    font-size: var(--text-xl);
+}
+main ul li .box_bottom .box_bottom_right{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    
+}
+main ul li .box_bottom .box_bottom_right p{
+    color: var(--color-orange-400);
+    text-align: right;
+    padding-bottom: 6px;
+}
+main ul li .box_bottom .box_bottom_right .btn{
+    background-color: var(--color-orange-100);
+    text-align: center;
+    border-radius: 20px;
+    cursor: grab;
+    padding: 2px 0;
+    width: 100px;
+    align-self: flex-end;
+    transition: all .2s;
+}
+main ul li .box_bottom .box_bottom_right .btn:hover{
+    background-color: var(--color-orange-200);
+    
+}
