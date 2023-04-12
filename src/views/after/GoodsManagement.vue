@@ -46,7 +46,7 @@
             width="60%"
             align-center>
         <div class="good_details">
-            <p>商品名称：{{goodDetails.name}}</p>
+            <p>商品名称：{{ goodDetails.name }}</p>
             <p>商品描述：</p>
             <p>定价：</p>
         </div>
@@ -66,12 +66,10 @@ import {computed, ref, reactive} from 'vue'
 
 const tableData = [
     {
-        name: '【花色上新】moody经典日抛美瞳大小直径彩色隐形眼镜女官方',
-        describe: "夏日限定 #新花色｜日抛",
         img: '主图/半年抛1_主图.png',
-        imgTop: '日抛1/日抛1_0000_顶图',
-        imgBottom: '日抛1/日抛1_0005_底图',
+        name: '【花色上新】moody经典日抛美瞳大小直径彩色隐形眼镜女官方',
         price: 100,
+        describe: "夏日限定 #新花色｜日抛",
     },
     {
         img: '主图/半年抛1_主图.png',
@@ -109,7 +107,41 @@ const centerDialogVisible = ref(false);
 let goodDetails = {};
 const handleEdit = (index, row) => {
     centerDialogVisible.value = true;
-    goodDetails = row;
+    //请求获取详细信息
+    goodDetails = {
+        img: '主图/半年抛1_主图.png',
+        name: '【花色上新】moody经典日抛美瞳大小直径彩色隐形眼镜女官方',
+        price: 100,
+        describe: "夏日限定 #新花色｜日抛",
+        imgTop: '日抛1/日抛1_0000_顶图',
+        imgBottom: '日抛1/日抛1_0005_底图',
+        imgShuffling: ["日抛1/日抛1_0001_伽罗棕.png",
+            "日抛1/日抛1_0002_胶片棕.png", "日抛1/日抛1_0003_丝绒棕.png", "日抛1/日抛1_0004_柔咖棕.png"],//轮播图
+        imgDetailsFigure: ["日抛1/日抛1-详情页1.jpg",
+            "日抛1/日抛1-详情页2.jpg",
+            "日抛1/日抛1-详情页3.jpg",
+            "日抛1/日抛1-详情页4.jpg",
+            "日抛1/日抛1-详情页5.jpg",
+            "日抛1/日抛1-详情页6.jpg",
+            "日抛1/日抛1-详情页7.jpg",
+            "日抛1/日抛1-详情页8.jpg",
+            "日抛1/日抛1-详情页9.jpg",
+            "日抛1/日抛1-胶片棕-商品图.jpg"],//描述图
+        goodsItems: [{
+            itemTitle: "胶片棕",
+            itemImg: "日抛1/日抛1-胶片棕-商品图.jpg"
+        }, {
+            itemTitle: "伽罗粽",
+            itemImg: "日抛1/日抛1-伽罗棕-商品图.jpg"
+        }, {
+            itemTitle: "柔咖棕",
+            itemImg: "日抛1/日抛1-柔咖棕-商品图.jpg"
+        }, {
+            itemTitle: "丝绒棕",
+            itemImg: "日抛1/日抛1-丝绒棕-商品图.jpg"
+        }]
+    };
+    console.log(goodDetails)
 };
 
 </script>
