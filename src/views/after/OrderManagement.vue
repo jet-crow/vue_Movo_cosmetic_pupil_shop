@@ -1,4 +1,9 @@
 <template>
+    <el-page-header @back="goBack">
+        <template #content>
+            <span class="text-large font-600 mr-3"> 商品管理 </span>
+        </template>
+    </el-page-header>
     <main>
         <ul>
             <li>
