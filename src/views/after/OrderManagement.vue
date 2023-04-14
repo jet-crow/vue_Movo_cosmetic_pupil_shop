@@ -105,4 +105,3 @@ const filterTableData = computed(() =>
 </script>
 
 <style scoped src="@/assets/css/view/after/order_management.css"></style>
-<style scoped></style>
