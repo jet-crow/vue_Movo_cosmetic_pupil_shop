@@ -2,22 +2,22 @@
     <main class="tac">
         <div class="menu_box">
             <Logo/>
-            <el-menu default-active="goodsManagement"
+            <el-menu default-active="/admin/userManagement"
                      :router="true"
                      @open="handleOpen" @close="handleClose">
-                <el-menu-item index="userManagement">
+                <el-menu-item index="/admin/userManagement">
                     <el-icon>
                         <setting/>
                     </el-icon>
                     <span>用户管理</span>
                 </el-menu-item>
-                <el-menu-item index="goodsManagement">
+                <el-menu-item index="/admin/goodsManagement">
                     <el-icon>
                         <setting/>
                     </el-icon>
                     <span>商品管理</span>
                 </el-menu-item>
-                <el-menu-item index="orderManagement">
+                <el-menu-item index="/admin/orderManagement">
                     <el-icon>
                         <setting/>
                     </el-icon>

@@ -11,8 +11,8 @@
                     <el-image :src="$getImgUrl(scope.row.img)"></el-image>
                 </template>
             </el-table-column>
-            <el-table-column label="商品名称" prop="name" align="center" />
-            <el-table-column label="描述" prop="describe" align="center" width="250" />
+            <el-table-column label="商品名称" prop="name" align="center"/>
+            <el-table-column label="描述" prop="describe" align="center" width="250"/>
             <el-table-column label="价格" prop="price" align="center" width="100">
                 <template #default="scope">
                     ￥{{ scope.row.price }}
@@ -21,15 +21,16 @@
             <el-table-column align="right" width="200">
                 <template #header>
                     <div class="function_header">
-                        <el-button type="warning" size="small" plain class="add_item">添加商品</el-button>
-                        <el-input v-model="search" size="small" placeholder="Type to search" />
+                        <el-button type="warning" size="small" plain class="add_item" @click="centerDialogVisible=true">添加商品</el-button>
+                        <el-input v-model="search" size="small" placeholder="Type to search"/>
                     </div>
                 </template>
                 <template #default="scope">
                     <el-button @click="handleEdit(scope.$index, scope.row)">
                         Edit
                     </el-button>
-                    <el-popconfirm title="Are you sure to delete this?" @confirm="handleDelete(scope.$index, scope.row)">
+                    <el-popconfirm title="Are you sure to delete this?"
+                                   @confirm="handleDelete(scope.$index, scope.row)">
                         <template #reference>
                             <el-button type="danger">Delete</el-button>
                         </template>
@@ -39,88 +40,18 @@
         </el-table>
     </main>
     <!--编辑弹窗-->
-    <el-dialog v-model="centerDialogVisible" title="编辑商品" width="60%" align-center>
-        <div class="good_details">
-            <ul>
-                <li>
-                    <span>商品类型：</span>
-                    <el-input v-model="goodDetails.type" size="large" placeholder="请输入商品名称" />
-
-                </li>
-                <li>
-                    <span>商品名称：</span>
-                    <el-input v-model="goodDetails.name" size="large" placeholder="请输入商品名称" />
-
-                </li>
-                <li>
-                    <span>商品价格：</span>
-                    <el-input v-model="goodDetails.price" placeholder="请输入商品价格" />
-                </li>
-                <li>
-                    <span>商品描述：</span>
-                    <el-input v-model="goodDetails.describe" placeholder="请输入商品描述" />
-                </li>
-                <li>
-                    <span>顶图：{{ goodDetails.imgTop }}</span>
-                    <!-- 图片 -->
-                </li>
-                <li>
-                    <span>底图：{{ goodDetails.imgBottom }}</span>
-                    <!-- 图片 -->
-
-                </li>
-                <li>
-                    <span>轮播图：{{ goodDetails.imgShuffling }}</span>
-                    <!-- 图片 -->
-
-                </li>
-                <li>
-                    <span>详情页图：{{ goodDetails.imgDetailsFigure }}</span>
-                    <!-- 图片1 -->
-
-                </li>
-                <li>
-                    <span>加购图：{{ goodDetails.goodsItems }}</span>
-                    <ul>
-                        <li>
-                            <el-input v-model="goodDetails.goodsItems[0].itemTitle" size="large" placeholder="请输入商品名称" />
-                    <!-- 图片 -->
-
-                        </li>
-                        <li>
-                            <el-input v-model="goodDetails.goodsItems[1].itemTitle" size="large" placeholder="请输入商品名称" />
-                    <!-- 图片 -->
-
-                        </li>
-                        <li>
-                            <el-input v-model="goodDetails.goodsItems[2].itemTitle" size="large" placeholder="请输入商品名称" />
-                    <!-- 图片 -->
-
-                        </li>
-                        <li>
-                            <el-input v-model="goodDetails.goodsItems[3].itemTitle" size="large" placeholder="请输入商品名称" />
-                    <!-- 图片 -->
-
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <template #footer>
-            <span class="dialog-footer">
-                <el-button @click="centerDialogVisible = false">Cancel</el-button>
-                <el-button type="primary" @click="centerDialogVisible = false">
-                    Confirm
-                </el-button>
-            </span>
-        </template>
-    </el-dialog>
+    <template v-if="centerDialogVisible">
+        <EditCommodity v-model:show-dialog="centerDialogVisible" :goodDetails="goodDetails"/>
+    </template>
 </template>
 
 <script setup>
-import { computed, ref, reactive } from 'vue';
-const name = ref('')
+import EditCommodity from "@/components/EditCommodity.vue";
+import {computed, ref, reactive} from 'vue';
 
+const goBack = () => {
+    console.log('go back');
+};
 const tableData = [
     {
         img: '主图/半年抛1_主图.png',
@@ -149,18 +80,13 @@ const tableData = [
 ];
 const search = ref('');
 const filterTableData = computed(() =>
-    tableData.filter((data) => !search.value ||
-        data.name.toLowerCase().includes(search.value.toLowerCase()))
+        tableData.filter((data) => !search.value ||
+                data.name.toLowerCase().includes(search.value.toLowerCase()))
 );
+/*删除*/
 const handleDelete = (index, row) => {
     console.log(index, row);
 };
-const goBack = () => {
-    console.log('go back');
-};
-
-
-
 
 /*编辑弹窗*/
 const centerDialogVisible = ref(false);
@@ -168,14 +94,14 @@ let goodDetails = {};
 const handleEdit = (index, row) => {
     centerDialogVisible.value = true;
     //请求获取详细信息
-    goodDetails = {
+    goodDetails = reactive({
         img: '主图/半年抛1_主图.png',
         name: '【花色上新】moody经典日抛美瞳大小直径彩色隐形眼镜女官方',
-        type:"日抛",
+        type: "日抛",
         price: 100,
         describe: "夏日限定 #新花色｜日抛",
-        imgTop: '日抛1/日抛1_0000_顶图',
-        imgBottom: '日抛1/日抛1_0005_底图',
+        imgTop: '日抛1/日抛1_0000_顶图.png',
+        imgBottom: '日抛1/日抛1_0005_底图.png',
         imgShuffling: ["日抛1/日抛1_0001_伽罗棕.png",
             "日抛1/日抛1_0002_胶片棕.png", "日抛1/日抛1_0003_丝绒棕.png", "日抛1/日抛1_0004_柔咖棕.png"],//轮播图
         imgDetailsFigure: ["日抛1/日抛1-详情页1.jpg",
@@ -201,15 +127,9 @@ const handleEdit = (index, row) => {
             itemTitle: "丝绒棕",
             itemImg: "日抛1/日抛1-丝绒棕-商品图.jpg"
         }]
-    };
-    console.log(goodDetails);
+    })
+    // console.log(goodDetails);
 };
-
-
-
-
-
-
 </script>
 
 <style scoped>
@@ -229,21 +149,4 @@ main {
     display: flex;
 }
 
-.good_details{
-    overflow: auto;
-}
-
-.good_details li{
-    
-}
-
-.good_details li span{
-    font-size: var(--text-xl);
-}
-
-.good_details li .el-input{
-    padding-top: 6px;
-    padding-bottom: 16px;
-    
-}
 </style>

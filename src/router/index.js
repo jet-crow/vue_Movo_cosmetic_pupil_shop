@@ -60,26 +60,22 @@ const routes = [
   },
   {
     path: '/admin',
-    name: 'afterIndex',
     component: () => import('../views/after/AfterIndex.vue'),
     children:[
       {
+        path:'',
+        component: () => import('../views/after/GoodsManagement.vue')
+      }, {
         path:'goodsManagement',
         component: () => import('../views/after/GoodsManagement.vue')
       },{
         path: 'orderManagement',
         component: () => import('../views/after/OrderManagement.vue')
-      }
-      ,{
+      },{
         path: 'userManagement',
         component: () => import('../views/after/UserManagement.vue')
       }
     ]
-  },
-  {
-    path: '/admin/abc',
-    name: 'goodsManagement',
-    component: () => import('../views/after/GoodsManagement.vue')
   }
 ]
 
