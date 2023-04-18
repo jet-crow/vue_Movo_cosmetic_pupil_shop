@@ -45,28 +45,4 @@ const handleClose = (key, keyPath) => {
     console.log(key, keyPath)
 }
 </script>
-<style scoped>
-.tac {
-    display: flex;
-}
-
-.menu_box {
-    min-height: 100vh;
-    background-color: white;
-    padding-top: 4rem;
-    position: relative;
-    width: 180px;
-    min-width: 180px;
-}
-
-.view_item {
-    flex: 1;
-    padding:4px;
-}
-
-.exit {
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem;
-}
-</style>
+<style scoped src="@/assets/css/view/after/afterIndex.css"></style>

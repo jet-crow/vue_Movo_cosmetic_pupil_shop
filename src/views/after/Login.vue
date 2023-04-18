@@ -22,5 +22,3 @@ const password = ref('')
 </script>
 
 <style scoped src="@/assets/css/view/after/login.css"></style>
-<style scoped>
-</style>
