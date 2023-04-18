@@ -32,7 +32,9 @@
                             <p>单价 ¥{{ items.goodsPrice }}</p>
                         </div>
                     </div>
-
+                    <div class="box_bottom_address">
+                        <p>收件人：学生会主席 ｜ 手机号：13900000001 ｜ 地址：aaaaaaaaaaaas</p>
+                    </div>
                     <div class="box_bottom_right">
                         <p>实付 ¥<span>{{ item.orderRental }}</span></p>
                         <div class="btn">{{ item.orderState == 0 ? "未发货" : item.orderState == 1 ? "已发货" : "已签收" }}</div>
