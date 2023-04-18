@@ -8,6 +8,7 @@ main ul li{
     background-color: var(--color-white);
     margin: 20px;
     padding: 10px;
+
     font-size: var(--text-xl);
     border-radius: 10px;
     border: 2px solid var(--color-orange-100);
@@ -22,7 +23,15 @@ main ul li .box_top{
 }
 main ul li .box_bottom{
     display: flex;
-    
+    flex-direction: column;
+    position: relative;
+}
+
+main ul li .box_bottom .box_bottom_left{
+    display: flex;
+    padding-bottom: 10px;
+
+
 }
 main ul li .box_bottom .box_bottom_left1{
     padding-right: 10px;
@@ -33,29 +42,44 @@ main ul li .box_bottom .box_bottom_left1 img{
     width: 120px;
     border-radius: 10px;
 }
-
-main ul li .box_bottom .box_bottom_empty{
-    flex: 1;
-}
-
 main ul li .box_bottom .box_bottom_left2{
     font-size: var(--text-2xl);
     padding-top: 6px;
+    border-top: 2px solid #7A010340;
 }
 
 main ul li .box_bottom .box_bottom_left2 span{
     font-size: var(--text-xl);
 }
+
+main ul li .box_bottom .box_bottom_empty{
+    flex: 1;
+    border-top: 2px solid #7A010340;
+}
+
+main ul li .box_bottom .box_bottom_right2 p{
+    color: var(--color-orange-400);
+    text-align: right;
+    padding-right: 6px;
+    padding-bottom: 6px;
+    border-top: 2px solid #7A010340;
+}
+
+
 main ul li .box_bottom .box_bottom_right{
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    
+    /* justify-content: flex-end; */
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 main ul li .box_bottom .box_bottom_right p{
     color: var(--color-orange-400);
     text-align: right;
+    padding-right: 6px;
     padding-bottom: 6px;
+    
 }
 main ul li .box_bottom .box_bottom_right .btn{
     background-color: var(--color-orange-100);

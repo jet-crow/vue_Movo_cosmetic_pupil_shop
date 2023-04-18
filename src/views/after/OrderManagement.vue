@@ -19,14 +19,19 @@
                     </div>
                 </div>
                 <div class="box_bottom">
-                    <div class="box_bottom_left1">
-                        <img :src="$getImgUrl(item.goodsImg)">
+                    <div class="box_bottom_left" v-for="(items, index) in item.orderItem">
+                        <div class="box_bottom_left1">
+                            <img :src="$getImgUrl(items.goodsImg)">
+                        </div>
+                        <div class="box_bottom_left2">
+                            <p>{{ items.goodsTitle }}</p>
+                            <span>X {{ items.goodsQty }}</span>
+                        </div>
+                        <div class="box_bottom_empty"></div>
+                        <div class="box_bottom_right2">
+                            <p>单价 ¥{{ items.goodsPrice }}</p>
+                        </div>
                     </div>
-                    <div class="box_bottom_left2">
-                        <p>{{ item.goodsTitle }}</p>
-                        <span>X {{ item.goodsQty }}</span>
-                    </div>
-                    <div class="box_bottom_empty"></div>
 
                     <div class="box_bottom_right">
                         <p>实付 ¥<span>{{ item.orderRental }}</span></p>
@@ -45,54 +50,35 @@ const OrderData = [{
     orderNo: 32001,
     orderRental: 200,
     orderState: 0, // 0 未发货，1 已发货，2 已签收
-    goodsTitle: "日抛1-胶片棕日抛1-胶片棕",
-    goodsImg: "日抛1/日抛1-胶片棕-商品图.jpg",
-    goodsQty: 2,
+    orderItem: [{
+        goodsTitle: "日抛1-胶片棕日抛1-胶片棕",
+        goodsImg: "日抛1/日抛1-胶片棕-商品图.jpg",
+        goodsQty: 2,
+        goodsPrice:50
+
+    }, {
+        goodsTitle: "日抛1-伽罗棕日抛1-伽罗棕",
+        goodsImg: "日抛1/日抛1-伽罗棕-商品图.jpg",
+        goodsQty: 3,
+        goodsPrice:40
+    }, {
+        goodsTitle: "日抛1-伽罗棕日抛1-伽罗棕",
+        goodsImg: "日抛1/日抛1-伽罗棕-商品图.jpg",
+        goodsQty: 3,
+        goodsPrice:30
+    }]
 
 }, {
     orderUser: 13911111112,
     orderNo: 32001,
-    orderRental: 200,
+    orderRental: 100,
     orderState: 1, // 0 未发货，1 已发货，2 已签收
-    goodsTitle: "伽罗粽",
-    goodsImg: "日抛1/日抛1-伽罗棕-商品图.jpg",
-    goodsQty: 2,
-
-}, {
-    orderUser: 13911111112,
-    orderNo: 32001,
-    orderRental: 200,
-    orderState: 2, // 0 未发货，1 已发货，2 已签收
-    goodsTitle: "胶片棕",
-    goodsImg: "日抛1/日抛1-胶片棕-商品图.jpg",
-    goodsQty: 2,
-
-}, {
-    orderUser: 13911111112,
-    orderNo: 32001,
-    orderRental: 200,
-    orderState: 0, // 0 未发货，1 已发货，2 已签收
-    goodsTitle: "胶片棕",
-    goodsImg: "日抛1/日抛1-胶片棕-商品图.jpg",
-    goodsQty: 2,
-
-}, {
-    orderUser: 13911111113,
-    orderNo: 32001,
-    orderRental: 200,
-    orderState: 0, // 0 未发货，1 已发货，2 已签收
-    goodsTitle: "胶片棕",
-    goodsImg: "日抛1/日抛1-胶片棕-商品图.jpg",
-    goodsQty: 2,
-
-}, {
-    orderUser: 13911111112,
-    orderNo: 32001,
-    orderRental: 200,
-    orderState: 0, // 0 未发货，1 已发货，2 已签收
-    goodsTitle: "胶片棕",
-    goodsImg: "日抛1/日抛1-胶片棕-商品图.jpg",
-    goodsQty: 2,
+    orderItem: [{
+        goodsTitle: "日抛1-胶片棕日抛1-胶片棕",
+        goodsImg: "日抛1/日抛1-胶片棕-商品图.jpg",
+        goodsQty: 2,
+        goodsPrice:50
+    }]
 
 }];
 
