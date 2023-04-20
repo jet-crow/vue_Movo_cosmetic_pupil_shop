@@ -36,9 +36,10 @@
     </main>
 </template>
 <script setup>
-import Nav from '@/components/Nav.vue'
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import Nav from '@/components/Nav.vue';
+import { ref, getCurrentInstance } from 'vue';
+import { useRouter } from 'vue-router';
+const { proxy } = getCurrentInstance();
 
 //data
 const user = ref();
@@ -46,7 +47,7 @@ const password = ref();
 const againPassword = ref();
 const isLogin = ref(true);//是否为登录页面
 //路由
-const route = useRouter()
+const route = useRouter();
 
 function switchForm() {
     isLogin.value = !isLogin.value;
@@ -54,8 +55,34 @@ function switchForm() {
 
 //跳转
 function jump() {
-    if (isLogin) {
-        route.push("/index")
+    // 测试 获取地址
+    // proxy.$api.get('/address/user/myAddress').then(res=>{
+    //     console.log(res);
+    // })
+
+
+
+    if (isLogin.value) {
+        // 设置cookies
+        proxy.$api.post('/account/login', proxy.$qs.stringify({
+            'user': user.value,
+            'password': password.value
+        })).then(res => {
+            console.log(res.data);
+            if (res.data.status == 500) {
+                alert('账号密码错误，请检查');
+                return;
+            }
+            // 删除之前的cookies
+            if ($cookies.isKey("token")) {
+                $cookies.remove("token");
+            }
+            $cookies.set("token", res.data.data.token); // 前面的为设置cookies的名字，后面为内容
+
+        });
+    } else {
+        // 点击注册按钮
+
     }
 }
 </script>
