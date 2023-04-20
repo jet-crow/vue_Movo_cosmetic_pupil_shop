@@ -6,13 +6,15 @@ import qs from 'qs';
 import VueCookies from 'vue-cookies';
 import './assets/css/reset.css';
 const app = createApp(App);
-axios.defaults.baseURL = 'http://localhost:9090/';
+axios.defaults.baseURL = '/api';
+// axios.defaults.baseURL = 'http://localhost:9090/';
 
 
 /* 获取cookie的token放到headers中 */
 axios.interceptors.request.use(
     function (config) {
         let token = VueCookies.get('token');
+        console.log(config.headers);
         if (token) {
             // 添加headers
             config.headers['token'] = token; // token

@@ -1,23 +1,23 @@
 <template>
     <main>
-        <Nav :isNotLogin="true" />
+        <Nav :isNotLogin="true"/>
         <div class="banner">
             <img :src="$getImgUrl('loginBg.jpg')" alt="" srcset="">
         </div>
         <div class="form_box">
             <label class="form_item no_border">
-                <input v-model="user" placeholder="usernames" />
+                <input v-model="user" placeholder="usernames"/>
                 <!-- <span>&nbsp</span> -->
                 <span>账号有误</span>
             </label>
             <label class="form_item no_border">
-                <input v-model="password" placeholder="password" />
+                <input v-model="password" placeholder="password"/>
                 <!-- <span>&nbsp</span> -->
                 <span>密码有误</span>
             </label>
             <!-- 注册part -->
             <label class="form_item no_border" v-show="!isLogin">
-                <input v-model="againPassword" placeholder="again password" />
+                <input v-model="againPassword" placeholder="again password"/>
                 <!-- <span>&nbsp</span> -->
                 <span>密码不一致</span>
             </label>
@@ -37,9 +37,11 @@
 </template>
 <script setup>
 import Nav from '@/components/Nav.vue';
-import { ref, getCurrentInstance } from 'vue';
-import { useRouter } from 'vue-router';
-const { proxy } = getCurrentInstance();
+import {ref, getCurrentInstance} from 'vue';
+import {useRouter} from 'vue-router';
+import VueCookies from "vue-cookies";
+
+const {proxy} = getCurrentInstance();
 
 //data
 const user = ref();
@@ -56,10 +58,9 @@ function switchForm() {
 //跳转
 function jump() {
     // 测试 获取地址
-    // proxy.$api.get('/address/user/myAddress').then(res=>{
-    //     console.log(res);
-    // })
-
+    proxy.$api.get('/address/user/myAddress').then(res=>{
+        console.log(res);
+    })
 
 
     if (isLogin.value) {
