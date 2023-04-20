@@ -1,17 +1,18 @@
 <template>
     <div class="goods_box">
-        <div class="good" v-for="i in 8" @click="$router.push('/goodsdetails')">
-            <img :src="$getImgUrl(goodsData[0].image)" />
-            <p class="good_name">{{ goodsData[0].name }}</p>
-            <p class="good_price">￥{{ goodsData[0].price }}</p>
+        <div class="good" v-for="(item, index) in goodsData" @click="">
+            <img :src="$getImgUrl(item.mainImg)" />
+            <p class="good_name">{{ item.gname }}</p>
+            <p class="good_price">￥{{ item.price }}</p>
         </div>
     </div>
 </template>
 <script setup>
 import router from '@/router';
-import { reactive } from 'vue'
+import { ref,getCurrentInstance } from 'vue';
+const { proxy } = getCurrentInstance();
 
-const goodsData = reactive([
+let goodsData = ref([
     {
         id: 0,
         price: 100,
@@ -19,6 +20,15 @@ const goodsData = reactive([
         image: "主图/日抛1_主图.png"
     }
 ])
+
+proxy.$api.get('/goods/AllGoods').then(res => {
+    console.log(res.data);
+    goodsData.value = res.data
+});
+
+
+// 跳转
+// const 
 
 </script>
 

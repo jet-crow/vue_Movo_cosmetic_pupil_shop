@@ -56,9 +56,9 @@ function switchForm() {
 //跳转
 function jump() {
     // 测试 获取地址
-    // proxy.$api.get('/address/user/myAddress').then(res=>{
-    //     console.log(res);
-    // })
+    proxy.$api.get('/address/user/myAddress').then(res=>{
+        console.log(res);
+    })
 
 
 
@@ -82,6 +82,7 @@ function jump() {
         });
     } else {
         // 点击注册按钮
+        
 
     }
 }

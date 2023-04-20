@@ -2,7 +2,7 @@
     <div class="box">
         <van-swipe :autoplay="3000" :show-indicators="false" class="outer_layer"
             :style="` background-image: url(${$getImgUrl(commodityData.bottomImg)});`">
-            <van-swipe-item v-for="(item, index) in commodityData.itemImg">
+            <van-swipe-item v-for="(item, index) in commodityData.shufflingFigure">
                 <img class="item" :src="$getImgUrl(item)" />
             </van-swipe-item>
         </van-swipe>

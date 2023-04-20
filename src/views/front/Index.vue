@@ -22,22 +22,28 @@
 </template>
 
 <script setup>
-import Nav from '@/components/Nav.vue'
-import Classification from '@/components/Classification.vue'
-import CommodityWindows from '@/components/CommodityWindows.vue'
-import Goods from '@/components/Goods.vue'
+import Nav from '@/components/Nav.vue';
+import Classification from '@/components/Classification.vue';
+import CommodityWindows from '@/components/CommodityWindows.vue';
+import Goods from '@/components/Goods.vue';
+import { ref,getCurrentInstance } from 'vue';
+const { proxy } = getCurrentInstance();
 
-const commodityData = {
+let commodityData = ref({
     topImg: "日抛1/日抛1_0000_顶图.png",
     bottomImg: "日抛1/日抛1_0005_底图.png",
-    itemImg: ["日抛1/日抛1_0001_伽罗棕.png",
+    shufflingFigure: ["日抛1/日抛1_0001_伽罗棕.png",
         "日抛1/日抛1_0002_胶片棕.png", "日抛1/日抛1_0003_丝绒棕.png", "日抛1/日抛1_0004_柔咖棕.png"]
-}
+});
+
+proxy.$api.get('/goods/hot').then(res => {
+    commodityData.value = res.data
+});
 
 //点击播放
 const play = (e) => {
     e.target.play();
-}
+};
 </script>
 
 
