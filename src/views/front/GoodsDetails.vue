@@ -76,6 +76,7 @@
     </footer>
 </template>
 <script setup>
+
 import CommodityWindows from '@/components/CommodityWindows.vue';
 import router from '@/router';
 import { ref,getCurrentInstance } from 'vue';
@@ -110,13 +111,15 @@ function choseGoods(e,gtypeIdValue) {
 
 // 加入购物车
 function addToShoppingCart(){
-    
+
     proxy.$api.post('/shoppingCart/user/addGood', proxy.$qs.stringify({
             'goodId': goodId,
             'gTypeId': gtypeId,
             'num':count.value
         })).then(res => {
             console.log(res.data);
+        }).catch(_=>{
+            proxy.$showFailToast('请选择商品款式');
         });
 }
 

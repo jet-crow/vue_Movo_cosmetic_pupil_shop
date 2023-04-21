@@ -6,6 +6,8 @@ import qs from 'qs';
 import VueCookies from 'vue-cookies';
 import './assets/css/reset.css';
 import 'vant/es/toast/style';
+import {showSuccessToast, showFailToast} from 'vant';
+
 const app = createApp(App);
 axios.defaults.baseURL = '/api';
 // axios.defaults.baseURL = 'http://localhost:9090';
@@ -29,6 +31,9 @@ axios.interceptors.request.use(
 
 app.config.globalProperties.$api = axios;
 app.config.globalProperties.$qs = qs;
+app.config.globalProperties.$showSuccessToast = showSuccessToast;
+app.config.globalProperties.$showFailToast = showFailToast;
+
 
 
 /* 全局方法 */
