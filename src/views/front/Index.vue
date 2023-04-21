@@ -9,7 +9,7 @@
         <Classification/>
     </aside>
     <main>
-        <div class="banner">
+        <div class="banner" @click="hotJump">
             <span>当日推荐</span>
             <CommodityWindows :commodityData="commodityData"/>
         </div>
@@ -27,6 +27,7 @@ import Classification from '@/components/Classification.vue';
 import CommodityWindows from '@/components/CommodityWindows.vue';
 import Goods from '@/components/Goods.vue';
 import {ref, getCurrentInstance} from 'vue';
+import router from "@/router";
 
 const {proxy} = getCurrentInstance();
 //热门商品
@@ -56,6 +57,13 @@ proxy.$api.get('/goods/AllGoods').then(res => {
 const play = (e) => {
     e.target.play();
 };
+const hotJump = () => {
+    console.log(commodityData.value)
+    router.push({
+        path: '/goodsdetails',
+        query: {goodId: commodityData.value.goodId}
+    })
+}
 </script>
 
 
