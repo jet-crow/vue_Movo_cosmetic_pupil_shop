@@ -35,6 +35,8 @@
                                     class="avatar-uploader"
                                     action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
                                     :show-file-list="false"
+                                    :on-change="handleChange"
+                                    :auto-upload="false"
                                     :on-success="handleAvatarSuccess"
                             >
                                 <img v-if="imgTop" :src="$getImgUrl(imgTop)" class="avatar"/>
@@ -113,7 +115,7 @@
                     <span>加购图：</span>
                     <ul class="img_goods_box">
                         <li v-for="i in goodDetails.goodsItems">
-                           <span>{{goodDetails.goodsItems[0].itemTitle}}</span>
+                            <span>{{ goodDetails.goodsItems[0].itemTitle }}</span>
                             <el-upload
                                     class="avatar-uploader"
                                     action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
@@ -183,6 +185,16 @@ const handleAvatarSuccess = (response, uploadFile) => {
     console.log(response, uploadFile);
 }
 
+function handleChange(file, fileLists) {
+    console.log(file);
+    console.log(fileLists);
+    // 本地服务器路径
+    console.log(URL.createObjectURL(file.raw));
+    // 本地电脑路径
+    console.log(document.getElementsByClassName("el-upload__input")[0].value);
+}
+
+
 /*
 * 照片墙：轮播图，详情页
 * */
@@ -227,12 +239,13 @@ const handlePictureCardPreview = (uploadFile) => {
     display: block;
 }
 
-.img_head_box,.img_goods_box {
+.img_head_box, .img_goods_box {
     margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
 }
-.img_head_box>div,.img_goods_box>li{
+
+.img_head_box > div, .img_goods_box > li {
     margin-right: 10px;
 }
 
