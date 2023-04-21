@@ -5,26 +5,29 @@
         </template>
     </el-page-header>
     <main>
-        <el-table :data="filterTableData" border>
-            <el-table-column label="uid" prop="uid" align="center"/>
-            <el-table-column label="user" prop="user" align="center"/>
-            <el-table-column label="username" prop="username" align="center"/>
-            <el-table-column label="password" prop="password" align="center"/>
+        <el-table :data="filterAccountData" border>
+            <el-table-column label="uid" prop="uid" align="center" />
+            <el-table-column label="user" prop="user" align="center" />
+            <el-table-column label="password" prop="password" align="center" />
+            <el-table-column label="role" prop="level" align="center" >
+                <template #default="scope">
+                    <!-- {{ scope.row.level  }} -->
+                    用户
+                </template>
+            </el-table-column>
 
             <el-table-column align="right" width="200">
                 <template #header>
                     <div class="function_header">
-                        <el-button type="warning" size="small" plain class="add_item">添加用户</el-button>
-                        <el-input v-model="search" size="small" placeholder="Type to search"/>
+                        <el-button type="warning" size="small" plain class="add_item" >添加用户</el-button>
+                        <el-input v-model="search" size="small" placeholder="Type to search" />
                     </div>
                 </template>
                 <template #default="scope">
                     <el-button @click="handleEdit(scope.$index, scope.row)">
                         Edit
                     </el-button>
-                    <el-popconfirm title="Are you sure to delete this?"
-                    @confirm="handleDelete(scope.$index, scope.row)"
-                    >
+                    <el-popconfirm title="Are you sure to delete this?" @confirm="handleDelete(scope.$index, scope.row)">
                         <template #reference>
                             <el-button type="danger">Delete</el-button>
                         </template>
@@ -37,55 +40,33 @@
 </template>
 
 <script setup>
-import {computed, ref} from 'vue'
+import { computed, ref, getCurrentInstance } from 'vue';
 
+const { proxy } = getCurrentInstance();
+let accountData = ref([]);
 
-const tableData = [
-    {
-        uid:1,
-        user:13911111112,
-        username:"Febird",
-        password:123
+// 获取网页数据
+proxy.$api.get('/account/admin/userAll').then(res => {
+    console.log(res.data);
+    accountData.value = res.data;
+    console.log(accountData.value);
+});
 
-    },
-    {
-        uid:1,
-        user:13911111112,
-        username:"Febird",
-        password:123
-
-    },
-    {
-        uid:1,
-        user:13911111112,
-        username:"Febird",
-        password:123
-
-    },
-    {
-        uid:2,
-        user:13911111113,
-        username:"Febird1",
-        password:123
-
-    }
-]
-
-const search = ref('')
-const filterTableData = computed(() =>
-        tableData.filter((data) => !search.value ||
-                (data.uid+"").includes(search.value)||
-                (data.user+"").includes(search.value)||
-                (data.username+"").includes(search.value))
-)
+const search = ref('');
+const filterAccountData = computed(() => {
+    return accountData.value.filter((data) => !search.value ||
+        (data.uid + "").includes(search.value) ||
+        (data.user + "").includes(search.value));
+});
 const handleEdit = (index, row) => {
-    console.log(index, row)
-}
+    console.log(index, row);
+};
 const handleDelete = (index, row) => {
     console.log(index, row);
-}
+};
 const goBack = () => {
-    console.log('go back')
+    console.log('go back');
+    window.history.go(-1);
 }
 
 /*是否删除*/

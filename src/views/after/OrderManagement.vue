@@ -9,35 +9,38 @@
             <li>
                 <el-input v-model="search" size="big" placeholder="Type to search" />
             </li>
-            <li v-for="(item, index) in filterTableData">
+            <li v-for="(item, index) in filterOrderData">
                 <div class="box_top">
                     <div class="box_top_left">
-                        下单用户: <span>{{ item.orderUser }}</span>
+                        下单用户: <span>{{ item.user }}</span>
                     </div>
                     <div class="box_top_right">
-                        订单号: <span>{{ 32001 }}</span>
+                        订单号: <span>{{ item.oderId }}</span>
                     </div>
                 </div>
                 <div class="box_bottom">
                     <div class="box_bottom_left" v-for="(items, index) in item.orderItem">
                         <div class="box_bottom_left1">
-                            <img :src="$getImgUrl(items.goodsImg)">
+                            <img :src="$getImgUrl(items.img)">
                         </div>
                         <div class="box_bottom_left2">
-                            <p>{{ items.goodsTitle }}</p>
-                            <span>X {{ items.goodsQty }}</span>
+                            <p>{{ items.name }}</p>
+                            <span>X {{ items.num }}</span>
                         </div>
                         <div class="box_bottom_empty"></div>
                         <div class="box_bottom_right2">
-                            <p>单价 ¥{{ items.goodsPrice }}</p>
+                            <p>单价 ¥{{ items.price }}</p>
                         </div>
                     </div>
                     <div class="box_bottom_address">
-                        <p>收件人：学生会主席 ｜ 手机号：13900000001 ｜ 地址：aaaaaaaaaaaas</p>
+                        <p>收件人：{{ item.orderItem[0].consignee }} ｜ 手机号：{{ item.orderItem[0].tel }} ｜ 地址：{{
+                            item.orderItem[0].address + item.orderItem[0].detailedAddress }}</p>
                     </div>
                     <div class="box_bottom_right">
-                        <p>实付 ¥<span>{{ item.orderRental }}</span></p>
-                        <div class="btn">{{ item.orderState == 0 ? "未发货" : item.orderState == 1 ? "已发货" : "已签收" }}</div>
+                        <p>实付 ¥<span>{{ item.orderItem[0].priceSum }}</span></p>
+                        <div class="btn" id="statusBtn" @click="changeStatus(item.oderId, index)">
+                        {{item.orderItem[0].productStatus == 0 ? "待付款" : item.orderItem[0].productStatus == 1 ? "待发货" :item.orderItem[0].productStatus == 2 ? "待收货" : "待评价" }}
+                    </div>
                     </div>
                 </div>
             </li>
@@ -45,51 +48,45 @@
     </main>
 </template>
 <script setup>
-import { ref, computed } from 'vue';
+import { computed, ref, getCurrentInstance } from 'vue';
+const { proxy } = getCurrentInstance();
 
-const OrderData = [{
-    orderUser: 13911111112,
-    orderNo: 32001,
-    orderRental: 200,
-    orderState: 0, // 0 未发货，1 已发货，2 已签收
-    orderItem: [{
-        goodsTitle: "日抛1-胶片棕日抛1-胶片棕",
-        goodsImg: "日抛1/日抛1-胶片棕-商品图.jpg",
-        goodsQty: 2,
-        goodsPrice:50
 
-    }, {
-        goodsTitle: "日抛1-伽罗棕日抛1-伽罗棕",
-        goodsImg: "日抛1/日抛1-伽罗棕-商品图.jpg",
-        goodsQty: 3,
-        goodsPrice:40
-    }, {
-        goodsTitle: "日抛1-伽罗棕日抛1-伽罗棕",
-        goodsImg: "日抛1/日抛1-伽罗棕-商品图.jpg",
-        goodsQty: 3,
-        goodsPrice:30
-    }]
-
-}, {
-    orderUser: 13911111112,
-    orderNo: 32001,
-    orderRental: 100,
-    orderState: 1, // 0 未发货，1 已发货，2 已签收
-    orderItem: [{
-        goodsTitle: "日抛1-胶片棕日抛1-胶片棕",
-        goodsImg: "日抛1/日抛1-胶片棕-商品图.jpg",
-        goodsQty: 2,
-        goodsPrice:50
-    }]
-
-}];
+let orderData = ref([]);
+// 获取网页数据
+proxy.$api.get('/order/admin/queryOrder').then(res => {
+    console.log(res.data);
+    orderData.value = res.data;
+    console.log(orderData.value);
+});
 
 const search = ref('');
-const filterTableData = computed(() =>
-    OrderData.filter((data) => !search.value ||
-        (data.orderUser + "").includes(search.value) ||
-        (data.goodsTitle + "").includes(search.value))
-);
+const filterOrderData = computed(() => {
+    return orderData.value.filter((data) => !search.value ||
+        (data.orderId + "").includes(search.value));
+});
+
+// 改变状态
+function changeStatus(oderId,index) {
+    switch (orderData.value[index].orderItem[0].productStatus) {
+        case 0:
+            proxy.$showFailToast('买家还未付款');
+            break;
+        case 1:
+            proxy.$api.get('/order/admin/receiving?orderId=' + oderId).then(res => {
+                console.log(res.data);
+                proxy.$showSuccessToast('发货成功');
+                orderData.value[index].orderItem[0].productStatus = 2
+            });
+            break;
+        case 2:
+            proxy.$showFailToast('买家还未收货');
+            break;
+        case 3:
+            proxy.$showFailToast('待评价');
+            break;
+    }
+}
 </script>
 
 <style scoped src="@/assets/css/view/after/order_management.css"></style>
