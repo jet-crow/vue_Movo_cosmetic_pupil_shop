@@ -10,7 +10,9 @@
             <template #right>
                 <van-button square text="删除" type="danger" class="delete-button" @click="delItem(index,i)"/>
             </template>
-            <van-stepper v-model="i.num" class="cart_item_stepper" input-width="20px" button-size="18px"/>
+            <van-stepper v-model="i.num" class="cart_item_stepper" input-width="20px" button-size="18px"
+                         @change="changeCount(i)"
+            />
         </van-swipe-cell>
     </div>
     <!-- 支付订单 -->
@@ -25,7 +27,6 @@
 import Nav from '@/components/Nav.vue';
 import {ref, getCurrentInstance, computed} from 'vue';
 import router from "@/router";
-import {showFailToast} from "vant";
 
 const {proxy} = getCurrentInstance();
 let goodsData = ref();
@@ -79,6 +80,10 @@ const checkIsAll = () => {
     }
     checked.value = true;
 }
+//修改商品数量
+const changeCount = (item) => {
+    proxy.$api.get(`/shoppingCart/user/updateGoodNum?cartId=${item.cartId}&num=${item.num}`);
+};
 //删除
 const delItem = (index, item) => {
     goodsData.value.splice(index, 1);
@@ -86,7 +91,6 @@ const delItem = (index, item) => {
 };
 
 function onSubmit() {
-
     let filterGoodsData = goodsData.value.filter((data) => data.isChoose === true);
     if (filterGoodsData.length === 0) {
         proxy.$showFailToast("请选择商品");
