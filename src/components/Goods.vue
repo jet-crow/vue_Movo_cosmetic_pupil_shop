@@ -1,7 +1,7 @@
 <template>
     <div class="goods_box">
         <div class="good" v-for="(item, index) in goodsData" @click="jump(item.goodId)">
-            <img :src="$getImgUrl(item.mainImg)" />
+            <img :src="$getImgUrl(item.mainImg)"/>
             <p class="good_name">{{ item.gname }}</p>
             <p class="good_price">￥{{ item.price }}</p>
         </div>
@@ -9,33 +9,17 @@
 </template>
 <script setup>
 import router from '@/router';
-import { ref,getCurrentInstance } from 'vue';
-const { proxy } = getCurrentInstance();
 
-let goodsData = ref([
-    {
-        id: 0,
-        price: 100,
-        name: "movo日抛经典movo日抛经典movo日抛经典movo日抛经典",
-        image: "主图/日抛1_主图.png"
-    }
-])
-
-proxy.$api.get('/goods/AllGoods').then(res => {
-    console.log(res.data);
-    goodsData.value = res.data
-});
-
-
+defineProps(["goodsData"]);
 // 跳转
-const jump = (goodIdValue)=>{
+const jump = (goodIdValue) => {
     router.push({
-        path:'/goodsdetails',
-        query:{
+        path: '/goodsdetails',
+        query: {
             goodId: goodIdValue
         }
     })
-}
+};
 
 </script>
 

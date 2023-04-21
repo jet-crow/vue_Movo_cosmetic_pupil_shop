@@ -95,7 +95,8 @@ router.beforeEach((to, from, next) => {
         return;
     }
     // 如果是登录页面，且token不为空就返回上一级
-    if (to.path === '/' && !(token === null || token === '')) {
+    if (to.path === '/' && token) {
+        console.log(12)
         //获取一下token如果没有才放行
         next(from.path);
         return;

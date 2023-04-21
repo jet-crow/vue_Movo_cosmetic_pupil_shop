@@ -1,6 +1,6 @@
 <template>
     <nav>
-        <div class="logo">
+        <div class="logo" @click="$router.push('/index')">
             <span>美瞳选购平台</span>
             <h3>movo</h3>
         </div>
