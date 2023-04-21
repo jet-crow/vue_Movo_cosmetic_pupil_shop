@@ -24,7 +24,6 @@ const quit = () => {
     localStorage.removeItem("token");
     name.value = "name";
     showSuccessToast("退出成功");
-
 }
 </script>
 <style scoped>

@@ -36,6 +36,9 @@ app.config.globalProperties.$showFailToast = showFailToast;
 /* 全局方法 */
 //获取本地图片
 app.config.globalProperties.$getImgUrl = (src) => {
+    if (src === undefined) {
+        return "/";
+    }
     // return require("./images/" + src)
     return "./images/" + src;
 };

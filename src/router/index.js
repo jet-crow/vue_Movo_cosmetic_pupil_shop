@@ -86,6 +86,8 @@ const router = createRouter({
 })
 //配置路由拦截，如果有token访问登录注册就返回上一级
 router.beforeEach((to, from, next) => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
     let token = localStorage.getItem("token");
     //这些页面如果没有token直接跳转登录
     if ((to.path === '/shoppingCart')
@@ -94,11 +96,9 @@ router.beforeEach((to, from, next) => {
         next('/');
         return;
     }
-    // 如果是登录页面，且token不为空就返回上一级
+    // 如果是登录页面，且token不为空就返回首页
     if (to.path === '/' && token) {
-        console.log(12)
-        //获取一下token如果没有才放行
-        next(from.path);
+        next("/index");
         return;
     }
     next();
