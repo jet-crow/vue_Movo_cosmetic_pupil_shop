@@ -12,7 +12,7 @@
             <li v-for="(item, index) in filterOrderData">
                 <div class="box_top">
                     <div class="box_top_left">
-                        下单用户: <span>{{ item.orderItem[0].consignee }}</span>
+                        下单用户: <span>{{ item.user }}</span>
                     </div>
                     <div class="box_top_right">
                         订单号: <span>{{ item.oderId }}</span>
@@ -33,11 +33,14 @@
                         </div>
                     </div>
                     <div class="box_bottom_address">
-                        <p>收件人：{{ item.orderItem[0].consignee }} ｜ 手机号：{{ item.orderItem[0].tel }} ｜ 地址：{{ item.orderItem[0].address + item.orderItem[0].detailedAddress }}</p>
+                        <p>收件人：{{ item.orderItem[0].consignee }} ｜ 手机号：{{ item.orderItem[0].tel }} ｜ 地址：{{
+                            item.orderItem[0].address + item.orderItem[0].detailedAddress }}</p>
                     </div>
                     <div class="box_bottom_right">
                         <p>实付 ¥<span>{{ item.orderItem[0].priceSum }}</span></p>
-                        <div class="btn">{{ item.orderItem[0].productStatus == 0 ? "待付款" : item.orderItem[0].productStatus == 1 ? "待发货" : item.orderItem[0].productStatus == 2 ? "待收货" :"待评价" }}</div>
+                        <div class="btn" id="statusBtn" @click="changeStatus(item.oderId, index)">
+                        {{item.orderItem[0].productStatus == 0 ? "待付款" : item.orderItem[0].productStatus == 1 ? "待发货" :item.orderItem[0].productStatus == 2 ? "待收货" : "待评价" }}
+                    </div>
                     </div>
                 </div>
             </li>
@@ -47,6 +50,8 @@
 <script setup>
 import { computed, ref, getCurrentInstance } from 'vue';
 const { proxy } = getCurrentInstance();
+
+
 let orderData = ref([]);
 // 获取网页数据
 proxy.$api.get('/order/admin/queryOrder').then(res => {
@@ -57,10 +62,31 @@ proxy.$api.get('/order/admin/queryOrder').then(res => {
 
 const search = ref('');
 const filterOrderData = computed(() => {
-    
     return orderData.value.filter((data) => !search.value ||
         (data.orderId + "").includes(search.value));
 });
+
+// 改变状态
+function changeStatus(oderId,index) {
+    switch (orderData.value[index].orderItem[0].productStatus) {
+        case 0:
+            proxy.$showFailToast('买家还未付款');
+            break;
+        case 1:
+            proxy.$api.get('/order/admin/receiving?orderId=' + oderId).then(res => {
+                console.log(res.data);
+                proxy.$showSuccessToast('发货成功');
+                orderData.value[index].orderItem[0].productStatus = 2
+            });
+            break;
+        case 2:
+            proxy.$showFailToast('买家还未收货');
+            break;
+        case 3:
+            proxy.$showFailToast('待评价');
+            break;
+    }
+}
 </script>
 
 <style scoped src="@/assets/css/view/after/order_management.css"></style>
