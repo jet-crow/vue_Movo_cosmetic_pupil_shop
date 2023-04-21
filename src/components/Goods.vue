@@ -1,6 +1,6 @@
 <template>
     <div class="goods_box">
-        <div class="good" v-for="(item, index) in goodsData" @click="">
+        <div class="good" v-for="(item, index) in goodsData" @click="jump(item.goodId)">
             <img :src="$getImgUrl(item.mainImg)" />
             <p class="good_name">{{ item.gname }}</p>
             <p class="good_price">￥{{ item.price }}</p>
@@ -28,7 +28,14 @@ proxy.$api.get('/goods/AllGoods').then(res => {
 
 
 // 跳转
-// const 
+const jump = (goodIdValue)=>{
+    router.push({
+        path:'/goodsdetails',
+        query:{
+            goodId: goodIdValue
+        }
+    })
+}
 
 </script>
 

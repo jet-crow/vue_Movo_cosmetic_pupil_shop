@@ -16,10 +16,11 @@
 const commodityData = {
     topImg: "日抛1/日抛1_0000_顶图.png",
     bottomImg: "日抛1/日抛1_0005_底图.png",
-    itemImg: ["日抛1/日抛1_0001_伽罗棕.png",
+    shufflingFigure: ["日抛1/日抛1_0001_伽罗棕.png",
         "日抛1/日抛1_0002_胶片棕.png", "日抛1/日抛1_0003_丝绒棕.png", "日抛1/日抛1_0004_柔咖棕.png"]
 }
  */
+
 const props = defineProps(["commodityData"])
 </script>
 <style scoped>

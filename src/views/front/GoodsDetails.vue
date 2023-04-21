@@ -13,28 +13,28 @@
         <section class="goods_map">
             <CommodityWindows :commodityData="commodityData" />
             <div class="goods_lable">
-                <span class="goods_money">¥89</span>
-                <span class="goods_title">【花色上新】moody经典日抛美瞳大小直径彩色隐形眼镜女官方</span>
+                <span class="goods_money">¥{{ commodityData.price }}</span>
+                <span class="goods_title">{{ commodityData.gname }}</span>
             </div>
         </section>
 
         <section class="goods_option">
             <div class="goods_chose_top">
                 <ul>
-                    <li v-for="(item, index) in shoppingCarData.itemData" @click="choseGoods($event)">
-                        <img class="item" :src="$getImgUrl(item.itemImg)" />
-                        <span>{{ item.itemTitle }}</span>
+                    <li v-for="(item, index) in commodityData.goodTypes" @click="choseGoods($event,item.gtypeId)">
+                        <img class="item" :src="$getImgUrl(item.img)" />
+                        <span>{{ item.name }}</span>
                     </li>
                 </ul>
             </div>
             <div class="goods_chose_buttom">
                 <div class="goods_type">
-                    夏日限定 #新花色｜日抛
+                    {{ commodityData.introduce }}
                 </div>
                 <div class="goods_count">
-                    <div class="reduce"><van-icon name="minus" /></div>
+                    <div class="reduce" @click="count > 0 ? count-- : null"><van-icon name="minus" /></div>
                     <div class="count">{{ count }}</div>
-                    <div class="add"><van-icon name="plus" /></div>
+                    <div class="add" @click="count++"><van-icon name="plus" /></div>
                 </div>
             </div>
         </section>
@@ -64,73 +64,81 @@
             </div>
         </section>
         <section class="goods_details">
-            <img v-for="(item, index) in GoodsDetailsData.itemImg" :src="$getImgUrl(item)" />
+            <img v-for="(item, index) in commodityData.detailsFigure" :src="$getImgUrl(item)" />
             <img :src="$getImgUrl('注意事项1.jpg')" alt="">
             <img :src="$getImgUrl('注意事项2.jpg')" alt="">
         </section>
     </main>
     <!-- 提交订单按钮 -->
     <footer>
-        <div class="add_cart">加入购物车</div>
+        <div class="add_cart" @click="addToShoppingCart()">加入购物车</div>
         <div class="buy"  @click="$router.push('/confirmOrder')">购买</div>
     </footer>
 </template>
 <script setup>
 import CommodityWindows from '@/components/CommodityWindows.vue';
-const count = 1;
-const commodityData = {
-    topImg: "日抛1/日抛1_0000_顶图.png",
-    bottomImg: "日抛1/日抛1_0005_底图.png",
-    itemImg: ["日抛1/日抛1_0001_伽罗棕.png",
-        "日抛1/日抛1_0002_胶片棕.png", "日抛1/日抛1_0003_丝绒棕.png", "日抛1/日抛1_0004_柔咖棕.png"]
-};
+import router from '@/router';
+import { ref,getCurrentInstance } from 'vue';
+const { proxy } = getCurrentInstance();
 
-const shoppingCarData = {
-    itemData: [{
-        itemTitle: "胶片棕",
-        itemImg: "日抛1/日抛1-胶片棕-商品图.jpg"
-    }, {
-        itemTitle: "伽罗粽",
-        itemImg: "日抛1/日抛1-伽罗棕-商品图.jpg"
-    }, {
-        itemTitle: "柔咖棕",
-        itemImg: "日抛1/日抛1-柔咖棕-商品图.jpg"
-    }, {
-        itemTitle: "丝绒棕",
-        itemImg: "日抛1/日抛1-丝绒棕-商品图.jpg"
-    }]
-};
+// 获取过来的goodId
+const goodId = router.currentRoute.value.query.goodId;
+// 商品款式id gtypeId
+let gtypeId = 0;
+// 商品数量
+let count = ref(1);
+// 网页数据
+let commodityData = ref({});
 
-const GoodsDetailsData = {
-    itemImg: ["日抛1/日抛1-详情页1.jpg",
-        "日抛1/日抛1-详情页2.jpg",
-        "日抛1/日抛1-详情页3.jpg",
-        "日抛1/日抛1-详情页4.jpg",
-        "日抛1/日抛1-详情页5.jpg",
-        "日抛1/日抛1-详情页6.jpg",
-        "日抛1/日抛1-详情页7.jpg",
-        "日抛1/日抛1-详情页8.jpg",
-        "日抛1/日抛1-详情页9.jpg",
-        "日抛1/日抛1-胶片棕-商品图.jpg"]
-};
+// 获取网页数据
+proxy.$api.get('/goods/goodInfo?goodId='+goodId).then(res => {
+    console.log(res.data);
+    commodityData.value = res.data;
+});
 
-function choseGoods(e) {
+// 选择款式
+function choseGoods(e,gtypeIdValue) {
     var chose_li = document.querySelectorAll(".goods_chose_top li");
     for (let i = 0; i < chose_li.length; i++) {
         chose_li[i].className = " ";
     }
     e.currentTarget.className = "checked";
 
+    // 款式id赋值
+    gtypeId = gtypeIdValue;
 }
 
+// 加入购物车
+function addToShoppingCart(){
+    
+    proxy.$api.post('/shoppingCart/user/addGood', proxy.$qs.stringify({
+            'goodId': goodId,
+            'gTypeId': gtypeId,
+            'num':count.value
+        })).then(res => {
+            console.log(res.data);
+        });
+}
 
+// 设置cookies
+// proxy.$api.post('/account/login', proxy.$qs.stringify({
+//             'user': user.value,
+//             'password': password.value
+//         })).then(res => {
+//             console.log(res.data);
+//             if (res.data.status == 500) {
+//                 alert('账号密码错误，请检查');
+//                 return;
+//             }
+//             // 删除之前的cookies
+//             if ($cookies.isKey("token")) {
+//                 $cookies.remove("token");
+//             }
+//             $cookies.set("token", res.data.data.token); // 前面的为设置cookies的名字，后面为内容
+
+//         });
 
 </script>
-
-<script>
-
-</script>
-
 
 <style scoped src="../../assets/css/view/front/goods_details.css"></style>
 <style scoped></style>
