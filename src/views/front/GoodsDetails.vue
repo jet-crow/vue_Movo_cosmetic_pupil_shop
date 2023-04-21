@@ -126,6 +126,10 @@ function choseGoods(e, gtypeValue) {
 
 // 加入购物车
 function addToShoppingCart() {
+    if (gtypeItem === undefined) {
+        proxy.$showFailToast("请选择商品款式");
+        return;
+    }
     proxy.$api.post('/shoppingCart/user/addGood', proxy.$qs.stringify({
         'goodId': goodId,
         'gTypeId': gtypeItem.gtypeId,
