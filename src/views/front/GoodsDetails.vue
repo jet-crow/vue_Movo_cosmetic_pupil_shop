@@ -4,7 +4,7 @@
             <van-icon name="arrow-left" @click="$router.back()"/>
         </div>
         <div class="options">
-            <van-icon name="cart-o"  @click="$router.push('/shoppingCart')"/>
+            <van-icon name="cart-o" @click="$router.push('/shoppingCart')"/>
             <span @click="$router.push('/home')">{{ name }}</span>
             <van-icon name="upgrade" @click="quit"/>
         </div>
@@ -21,7 +21,7 @@
         <section class="goods_option">
             <div class="goods_chose_top">
                 <ul>
-                    <li v-for="(item, index) in commodityData.goodTypes" @click="choseGoods($event,item.gtypeId)">
+                    <li v-for="(item, index) in commodityData.goodTypes" @click="choseGoods($event,item)">
                         <img class="item" :src="$getImgUrl(item.img)"/>
                         <span>{{ item.name }}</span>
                     </li>
@@ -77,7 +77,7 @@
     <!-- 提交订单按钮 -->
     <footer>
         <div class="add_cart" @click="addToShoppingCart()">加入购物车</div>
-        <div class="buy" @click="$router.push('/confirmOrder')">购买</div>
+        <div class="buy" @click="buy">购买</div>
     </footer>
 </template>
 <script setup>
@@ -91,7 +91,7 @@ const {proxy} = getCurrentInstance();
 // 获取过来的goodId
 const goodId = router.currentRoute.value.query.goodId;
 // 商品款式id gtypeId
-let gtypeId = 0;
+let gtypeItem;
 // 商品数量
 let count = ref(1);
 // 网页数据
@@ -113,23 +113,22 @@ proxy.$api.get('/goods/goodInfo?goodId=' + goodId).then(res => {
 });
 
 // 选择款式
-function choseGoods(e, gtypeIdValue) {
+function choseGoods(e, gtypeValue) {
     var chose_li = document.querySelectorAll(".goods_chose_top li");
     for (let i = 0; i < chose_li.length; i++) {
         chose_li[i].className = " ";
     }
     e.currentTarget.className = "checked";
 
-    // 款式id赋值
-    gtypeId = gtypeIdValue;
+    // 款式赋值
+    gtypeItem = gtypeValue;
 }
 
 // 加入购物车
 function addToShoppingCart() {
-
     proxy.$api.post('/shoppingCart/user/addGood', proxy.$qs.stringify({
         'goodId': goodId,
-        'gTypeId': gtypeId,
+        'gTypeId': gtypeItem.gtypeId,
         'num': count.value
     })).then(res => {
         proxy.$showSuccessToast('添加成功');
@@ -139,23 +138,26 @@ function addToShoppingCart() {
     });
 }
 
-// 设置cookies
-// proxy.$api.post('/account/login', proxy.$qs.stringify({
-//             'user': user.value,
-//             'password': password.value
-//         })).then(res => {
-//             console.log(res.data);
-//             if (res.data.status == 500) {
-//                 alert('账号密码错误，请检查');
-//                 return;
-//             }
-//             // 删除之前的cookies
-//             if ($cookies.isKey("token")) {
-//                 $cookies.remove("token");
-//             }
-//             $cookies.set("token", res.data.data.token); // 前面的为设置cookies的名字，后面为内容
-
-//         });
+function buy() {
+    if (gtypeItem === undefined) {
+        proxy.$showFailToast("请选择商品款式");
+        return;
+    }
+    let priceSum = commodityData.value.price * count.value * 100;
+    router.push({
+        path: '/confirmOrder',
+        query: {
+            goodsData: proxy.$qs.stringify([{
+                num: count.value,
+                price: 100,
+                name: gtypeItem.name,
+                gname: commodityData.value.gname,
+                img: gtypeItem.img,
+            }]),
+            priceSum: priceSum,
+        }
+    });
+}
 
 </script>
 
