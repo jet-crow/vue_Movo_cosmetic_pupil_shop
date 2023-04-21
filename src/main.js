@@ -3,7 +3,6 @@ import App from './App.vue';
 import router from './router';
 import axios from 'axios';
 import qs from 'qs';
-import VueCookies from 'vue-cookies';
 import './assets/css/reset.css';
 import 'vant/es/toast/style';
 import {showSuccessToast, showFailToast} from 'vant';
@@ -15,9 +14,7 @@ axios.defaults.baseURL = '/api';
 /* 获取cookie的token放到headers中 */
 axios.interceptors.request.use(
     function (config) {
-        let token = VueCookies.get('token');
-        // console.log(token);
-        // console.log(config.headers);
+        let token = localStorage.getItem("token");
         if (token) {
             // 添加headers
             config.headers['token'] = token; // token

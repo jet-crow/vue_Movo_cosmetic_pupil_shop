@@ -5,14 +5,27 @@
             <h3>movo</h3>
         </div>
         <div class="options" v-if="!isNotLogin">
-            <van-icon name="cart-o"  @click="$router.push('/shoppingCart')" />
-            <span  @click="$router.push('/home')">name</span>
-            <van-icon name="upgrade" />
+            <van-icon name="cart-o" @click="$router.push('/shoppingCart')"/>
+            <span @click="$router.push('/home')">{{ name }}</span>
+            <van-icon name="upgrade" @click="quit"/>
         </div>
     </nav>
 </template>
 <script setup>
-const props = defineProps(['isNotLogin'])
+import {ref} from 'vue';
+
+const props = defineProps(['isNotLogin']);
+const sName = localStorage.getItem("name");
+const name = ref(sName == null ? "name" : sName);
+import {showSuccessToast} from 'vant';
+
+const quit = () => {
+    localStorage.removeItem("name");
+    localStorage.removeItem("token");
+    name.value = "name";
+    showSuccessToast("退出成功");
+
+}
 </script>
 <style scoped>
 nav {
@@ -31,7 +44,7 @@ nav {
     height: inherit;
 }
 
-.logo>h3 {
+.logo > h3 {
     bottom: 0;
     color: var(--color-white);
     font-size: var(--text-2xl);
@@ -43,11 +56,11 @@ nav {
 }
 
 /* 首字母放大 */
-.logo>h3::first-letter {
+.logo > h3::first-letter {
     font-size: var(--text-6xl);
 }
 
-.logo>span {
+.logo > span {
     position: absolute;
     left: 3.5rem;
     top: 0.5rem;

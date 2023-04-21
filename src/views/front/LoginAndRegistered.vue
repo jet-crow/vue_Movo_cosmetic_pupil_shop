@@ -75,7 +75,8 @@ function jump() {
             }
             showSuccessToast('登錄成功');
             // 前面的为设置cookies
-            $cookies.set("token", res.data.data.token);
+            localStorage.setItem("token", res.data.data.token);
+            localStorage.setItem("name", res.data.data.user);
             //跳转主页
             router.push('/index');
         });
