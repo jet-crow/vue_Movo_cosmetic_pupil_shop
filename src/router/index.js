@@ -90,7 +90,7 @@ router.beforeEach((to, from, next) => {
     document.documentElement.scrollTop = 0;
     let token = localStorage.getItem("token");
     //这些页面如果没有token直接跳转登录
-    if ((to.path === '/shoppingCart')
+    if ((to.path === '/shoppingCart' || to.path === '/addressList')
         && (token === null || token === '')) {
         showFailToast("您还未登录");
         next('/');

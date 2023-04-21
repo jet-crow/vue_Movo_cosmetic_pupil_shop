@@ -77,6 +77,7 @@ function jump() {
             // 前面的为设置cookies
             localStorage.setItem("token", res.data.data.token);
             localStorage.setItem("name", res.data.data.user);
+            localStorage.setItem("uid", res.data.data.uid);
             //跳转主页
             router.push('/index');
         });
