@@ -90,7 +90,7 @@ router.beforeEach((to, from, next) => {
     document.documentElement.scrollTop = 0;
     let token = localStorage.getItem("token");
     //这些页面如果没有token直接跳转登录
-    if ((to.path === '/shoppingCart' || to.path === '/addressList')
+    if ((to.path === '/shoppingCart' || to.path === '/addressList' || to.path === '/confirmOrder' || to.path === '/myOrder')
         && (token === null || token === '')) {
         showFailToast("您还未登录");
         next('/');
@@ -98,6 +98,15 @@ router.beforeEach((to, from, next) => {
     }
     // 如果是登录页面，且token不为空就返回首页
     if (to.path === '/' && token) {
+        next("/index");
+        return;
+    }
+    //如果访问含admin的网址，必须有adminToken，否则直接返回到index
+    let adminToken = localStorage.getItem("adminToken");
+    if (to.path === '/admin/login') {
+        next();
+        return;
+    } else if (to.path.includes("admin") && (adminToken === null || adminToken === '')) {
         next("/index");
         return;
     }

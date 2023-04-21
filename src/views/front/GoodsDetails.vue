@@ -103,6 +103,7 @@ const name = ref(sName == null ? "name" : sName);
 const quit = () => {
     localStorage.removeItem("name");
     localStorage.removeItem("token");
+    localStorage.removeItem("adminToken");
     name.value = "name";
     proxy.$showSuccessToast("退出成功");
 }

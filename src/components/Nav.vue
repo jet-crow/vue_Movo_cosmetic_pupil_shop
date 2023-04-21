@@ -22,6 +22,7 @@ import {showSuccessToast} from 'vant';
 const quit = () => {
     localStorage.removeItem("name");
     localStorage.removeItem("token");
+    localStorage.removeItem("adminToken");
     name.value = "name";
     showSuccessToast("退出成功");
 }

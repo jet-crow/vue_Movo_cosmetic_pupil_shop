@@ -44,8 +44,13 @@ const goodsData = proxy.$qs.parse(query.goodsData);
 const priceSum = +query.priceSum;
 console.log(goodsData, priceSum);
 
-function onSubmit() {
+//获取默认地址，若为空则提示请选择地址
 
+
+//点击就添加订单，弹窗是否付款
+function onSubmit() {
+    //判断一下是否有地址
+    //循环掉一下删除商品的接口
 }
 </script>
 

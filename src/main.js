@@ -1,4 +1,4 @@
-import { createApp } from 'vue';
+import {createApp} from 'vue';
 import App from './App.vue';
 import router from './router';
 import axios from 'axios';
@@ -14,7 +14,13 @@ axios.defaults.baseURL = '/api';
 /* 获取cookie的token放到headers中 */
 axios.interceptors.request.use(
     function (config) {
-        let token = localStorage.getItem("token");
+        //如果有adminToken就优先使用adminToken
+        let token
+        if (localStorage.getItem("adminToken")) {
+            token = localStorage.getItem("adminToken");
+        } else {
+            token = localStorage.getItem("token");
+        }
         if (token) {
             // 添加headers
             config.headers['token'] = token; // token
@@ -30,7 +36,6 @@ app.config.globalProperties.$api = axios;
 app.config.globalProperties.$qs = qs;
 app.config.globalProperties.$showSuccessToast = showSuccessToast;
 app.config.globalProperties.$showFailToast = showFailToast;
-
 
 
 /* 全局方法 */
