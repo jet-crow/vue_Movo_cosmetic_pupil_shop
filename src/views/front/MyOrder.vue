@@ -32,6 +32,7 @@ const {proxy} = getCurrentInstance();
 const orderDate = ref();
 //请求订单数据
 proxy.$api.get("/order/user/queryOrder").then(r => {
+    console.log(r.data)
     orderDate.value = r.data;
 });
 const getOrderState = (index) => {

@@ -153,6 +153,8 @@ function buy() {
         path: '/confirmOrder',
         query: {
             goodsData: proxy.$qs.stringify([{
+                goodId: goodId,
+                gtypeId: gtypeItem.gtypeId,
                 num: count.value,
                 price: 100,
                 name: gtypeItem.name,

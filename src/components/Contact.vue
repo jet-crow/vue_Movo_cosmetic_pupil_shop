@@ -1,10 +1,19 @@
 <template>
-    <div class="contact_box">
-        <p class="contact_info">张三：12345678910</p>
-        <p class="address">浙江省杭州市西湖区文三路 138 号东方通信大厦 7 楼 501 室</p>
-        <van-icon name="edit" class="edit" />
+    <div class="contact_box" v-if="isDefault">
+        <p class="contact_info">{{addressData.consignee}}：{{addressData.tel}}</p>
+        <p class="address"> {{addressData.address}}{{addressData.detailedAddress}}</p>
+        <van-icon name="edit" class="edit"/>
+    </div>
+    <div v-else class="not_contact_box" @click="$router.push('/addressList')">
+        请选择收货地址
     </div>
 </template>
+
+<script setup>
+defineProps(["isDefault", "addressData"]);
+</script>
+
+
 <style scoped>
 /* 联系人 */
 .contact_box {
@@ -12,6 +21,7 @@
     padding: .5rem;
     height: fit-content;
     position: relative;
+
 }
 
 .contact_box::after {
@@ -34,5 +44,14 @@
     position: absolute;
     right: 1.5rem;
     top: calc(50% - 10px);
+}
+
+.not_contact_box {
+    text-align: center;
+    line-height: 3rem;
+    background-color: white;
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+
 }
 </style>
