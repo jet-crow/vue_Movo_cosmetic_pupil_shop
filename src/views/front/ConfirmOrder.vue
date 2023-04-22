@@ -44,11 +44,13 @@ import router from "@/router";
 import {getCurrentInstance, ref} from 'vue';
 
 const {proxy} = getCurrentInstance();
+//获取上一级的地址
 //获取传过来的参数
 const query = router.currentRoute.value.query;
 const goodsData = proxy.$qs.parse(query.goodsData);
+const isBuy = query.isBuy;
+
 const priceSum = +query.priceSum;
-// console.log(goodsData, priceSum);
 const isDefault = ref(false);
 const addressData = ref();
 const showContinueToPay = ref(false);
@@ -65,6 +67,7 @@ proxy.$api.get("/address/user/defaultContactAddress").then(r => {
 });
 
 const orderId = ref();
+console.log(isBuy)
 
 //点击就添加订单，弹窗是否付款
 function onSubmit() {
@@ -93,11 +96,14 @@ function onSubmit() {
         orderId.value = r.data.orderId;
         showContinueToPay.value = true;
         //循环掉一下删除商品的接口
+        //如果上一个页面是商品详情页就不删除
+        if (isBuy) {
+            return;
+        }
         for (let orderDetail of orderDetails) {
             //传goodId和gTypeId删除
             proxy.$api.get(`/shoppingCart/user/delGoodsByGoodsItem?goodId=${orderDetail.goodId}&gTypeId=${orderDetail.gTypeId}`);
         }
-        console.log(r.data)
     });
 }
 

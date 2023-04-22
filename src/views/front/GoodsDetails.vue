@@ -162,6 +162,7 @@ function buy() {
                 img: gtypeItem.img,
             }]),
             priceSum: priceSum,
+            isBuy: true,
         }
     });
 }
