@@ -44,7 +44,6 @@ import router from "@/router";
 import {getCurrentInstance, ref} from 'vue';
 
 const {proxy} = getCurrentInstance();
-//获取上一级的地址
 //获取传过来的参数
 const query = router.currentRoute.value.query;
 const goodsData = proxy.$qs.parse(query.goodsData);
