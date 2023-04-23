@@ -4,7 +4,7 @@
         <p class="title">提交订单</p>
     </nav>
     <!-- 联系人 -->
-    <Contact :isDefault="isDefault" :addressData="addressData"/>
+    <Contact :isDefault="isDefault" :addressData="addressData" @click="$router.push('/addressList')"/>
     <!-- 具体订单信息 -->
     <main>
         <div class="info_box">

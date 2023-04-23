@@ -6,7 +6,7 @@
         </div>
         <div class="options" v-if="!isNotLogin">
             <van-icon name="cart-o" @click="$router.push('/shoppingCart')"/>
-            <span @click="$router.push('/home')">{{ name }}</span>
+            <span @click="name=='name'?$router.push('/'):$router.push('/home')">{{ name }}</span>
             <van-icon name="upgrade" @click="quit"/>
         </div>
     </nav>

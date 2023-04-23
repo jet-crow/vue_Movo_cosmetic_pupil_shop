@@ -24,7 +24,7 @@
                     <span>订单管理</span>
                 </el-menu-item>
             </el-menu>
-            <el-button type="warning" plain class="exit">退出</el-button>
+            <el-button type="warning" plain class="exit" @click="exit">退出</el-button>
         </div>
         <div class="view_item">
             <router-view/>
@@ -37,12 +37,19 @@ import {
     Setting,
 } from '@element-plus/icons-vue'
 import Logo from "@/components/Logo.vue";
+import {showSuccessToast} from "vant";
+import router from "@/router";
 
 const handleOpen = (key, keyPath) => {
     console.log(key, keyPath)
 }
 const handleClose = (key, keyPath) => {
     console.log(key, keyPath)
+}
+const exit=()=>{
+    localStorage.removeItem("name");
+    localStorage.removeItem("adminToken");
+    router.replace("/index");
 }
 </script>
 <style scoped src="@/assets/css/view/after/afterIndex.css"></style>

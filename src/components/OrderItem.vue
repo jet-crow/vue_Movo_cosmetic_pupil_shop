@@ -6,7 +6,7 @@
                 :thumb="$getImgUrl(i.img)"/>
         <p style="text-align: right; line-height: 3rem;margin-right: .5rem;">
             <span style="color:#999;">含运费险服务</span>
-            需付款￥6.40
+            {{state == 0?"需付款":"金额"}}￥{{priceSum}}
         </p>
         <!-- 不同的状态对应不同的按钮 -->
         <!-- 
@@ -46,12 +46,20 @@
 </template>
 
 <script setup>
-import {defineProps, ref, getCurrentInstance} from 'vue';
+import {defineProps, ref, getCurrentInstance, computed} from 'vue';
 
 const {proxy} = getCurrentInstance();
 const props = defineProps(['state', 'orderItem']);
 const showContinueToPay = ref(false);
 const showConfirmTheGoods = ref(false);
+const priceSum = computed(() => {
+    let priceSum = 0;
+    for (const goods of props.orderItem.orderItem) {
+        priceSum += goods.price * goods.num;
+    }
+    return priceSum;
+});
+
 //付款
 const continueToPay = () => {
     proxy.$api.get("/order/user/deliverGoods?orderId=" + props.orderItem.oderId).then(r => {
