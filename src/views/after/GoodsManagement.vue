@@ -5,19 +5,20 @@
         </template>
     </el-page-header>
     <main>
-        <el-table :data="filterTableData" border>
+        <el-table :data="filterGoodsData" border>
             <el-table-column label="图片" prop="img" align="center" width="120">
                 <template #default="scope">
-                    <el-image :src="$getImgUrl(scope.row.img)"></el-image>
+                    <el-image :src="$getImgUrl(scope.row.mainImg)"></el-image>
                 </template>
             </el-table-column>
-            <el-table-column label="商品名称" prop="name" align="center"/>
-            <el-table-column label="描述" prop="describe" align="center" width="250"/>
+            <el-table-column label="商品名称" prop="gname" align="center"/>
+            <el-table-column label="描述" prop="introduce" align="center" width="250"/>
             <el-table-column label="价格" prop="price" align="center" width="100">
                 <template #default="scope">
                     ￥{{ scope.row.price }}
-                </template>
+                </template> 
             </el-table-column>
+            
             <el-table-column align="right" width="200">
                 <template #header>
                     <div class="function_header">
@@ -47,45 +48,38 @@
 
 <script setup>
 import EditCommodity from "@/components/EditCommodity.vue";
-import {computed, ref, reactive} from 'vue';
+import {computed, ref, reactive ,getCurrentInstance} from 'vue';
+import {showSuccessToast, showFailToast} from 'vant';
 
-const goBack = () => {
-    console.log('go back');
-};
-const tableData = [
-    {
-        img: '主图/半年抛1_主图.png',
-        name: '【花色上新】moody经典日抛美瞳大小直径彩色隐形眼镜女官方',
-        price: 100,
-        describe: "夏日限定 #新花色｜日抛",
-    },
-    {
-        img: '主图/半年抛1_主图.png',
-        name: '商品2',
-        price: 100,
-        describe: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-        img: '主图/半年抛1_主图.png',
-        name: '商品3',
-        price: 100,
-        describe: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-        img: '主图/半年抛1_主图.png',
-        name: '商品4',
-        price: 100,
-        describe: 'No. 189, Grove St, Los Angeles',
-    },
-];
+const { proxy } = getCurrentInstance();
+let goodsData = ref([]);
+
+// 获取网页数据
+proxy.$api.get('/goods/admin/AllGoods').then(res => {
+    // console.log(res.data);
+    goodsData.value = res.data;
+    // console.log(goodsData.value);
+});
 const search = ref('');
-const filterTableData = computed(() =>
-        tableData.filter((data) => !search.value ||
-                data.name.toLowerCase().includes(search.value.toLowerCase()))
-);
+const filterGoodsData = computed(() => {
+    return goodsData.value.filter((data) => !search.value ||
+        data.gname.toLowerCase().includes(search.value.toLowerCase()))
+});
+
 /*删除*/
 const handleDelete = (index, row) => {
     console.log(index, row);
+    // 获取网页数据
+    proxy.$api.get('/goods/admin/delGood?goodId=' + row.goodId).then(res => {
+        console.log(res.data.status);
+
+        if(res.data.status === 200){
+            showSuccessToast('删除成功');
+            location.reload();
+        }else{
+            showFailToast('删除失敗');
+        }
+    });
 };
 
 /*编辑弹窗*/
@@ -129,6 +123,12 @@ const handleEdit = (index, row) => {
         }]
     })
     // console.log(goodDetails);
+};
+
+
+const goBack = () => {
+    console.log('go back');
+    window.history.go(-1);
 };
 </script>
 
