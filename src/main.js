@@ -41,6 +41,9 @@ app.config.globalProperties.$showFailToast = showFailToast;
 /* 全局方法 */
 //获取本地图片
 app.config.globalProperties.$getImgUrl = (src) => {
+    if (src.includes("base64")) {
+        return src;
+    }
     if (src === undefined) {
         return "/";
     }

@@ -3,8 +3,7 @@
         <div class="menu_box">
             <Logo/>
             <el-menu default-active="/admin/userManagement"
-                     :router="true"
-                     @open="handleOpen" @close="handleClose">
+                     :router="true">
                 <el-menu-item index="/admin/userManagement">
                     <el-icon>
                         <setting/>
@@ -37,15 +36,7 @@ import {
     Setting,
 } from '@element-plus/icons-vue'
 import Logo from "@/components/Logo.vue";
-import {showSuccessToast} from "vant";
 import router from "@/router";
-
-const handleOpen = (key, keyPath) => {
-    console.log(key, keyPath)
-}
-const handleClose = (key, keyPath) => {
-    console.log(key, keyPath)
-}
 const exit=()=>{
     localStorage.removeItem("name");
     localStorage.removeItem("adminToken");

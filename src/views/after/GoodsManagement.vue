@@ -22,7 +22,7 @@
             <el-table-column align="right" width="200">
                 <template #header>
                     <div class="function_header">
-                        <el-button type="warning" size="small" plain class="add_item" @click="centerDialogVisible=true">添加商品</el-button>
+                        <el-button type="warning" size="small" plain class="add_item" @click="add">添加商品</el-button>
                         <el-input v-model="search" size="small" placeholder="Type to search"/>
                     </div>
                 </template>
@@ -42,7 +42,7 @@
     </main>
     <!--编辑弹窗-->
     <template v-if="centerDialogVisible">
-        <EditCommodity v-model:show-dialog="centerDialogVisible" :goodDetails="goodDetails"/>
+        <EditCommodity v-model:show-dialog="centerDialogVisible" :goodId="goodId"/>
     </template>
 </template>
 
@@ -84,45 +84,16 @@ const handleDelete = (index, row) => {
 
 /*编辑弹窗*/
 const centerDialogVisible = ref(false);
-let goodDetails = {};
+//是否为添加
+const goodId = ref(0);
+const add =()=>{
+    centerDialogVisible.value = true;
+    goodId.value = 0;
+}
 const handleEdit = (index, row) => {
     centerDialogVisible.value = true;
-    //请求获取详细信息
-    goodDetails = reactive({
-        img: '主图/半年抛1_主图.png',
-        name: '【花色上新】moody经典日抛美瞳大小直径彩色隐形眼镜女官方',
-        type: "日抛",
-        price: 100,
-        describe: "夏日限定 #新花色｜日抛",
-        imgTop: '日抛1/日抛1_0000_顶图.png',
-        imgBottom: '日抛1/日抛1_0005_底图.png',
-        imgShuffling: ["日抛1/日抛1_0001_伽罗棕.png",
-            "日抛1/日抛1_0002_胶片棕.png", "日抛1/日抛1_0003_丝绒棕.png", "日抛1/日抛1_0004_柔咖棕.png"],//轮播图
-        imgDetailsFigure: ["日抛1/日抛1-详情页1.jpg",
-            "日抛1/日抛1-详情页2.jpg",
-            "日抛1/日抛1-详情页3.jpg",
-            "日抛1/日抛1-详情页4.jpg",
-            "日抛1/日抛1-详情页5.jpg",
-            "日抛1/日抛1-详情页6.jpg",
-            "日抛1/日抛1-详情页7.jpg",
-            "日抛1/日抛1-详情页8.jpg",
-            "日抛1/日抛1-详情页9.jpg",
-            "日抛1/日抛1-胶片棕-商品图.jpg"],//描述图
-        goodsItems: [{
-            itemTitle: "胶片棕",
-            itemImg: "日抛1/日抛1-胶片棕-商品图.jpg"
-        }, {
-            itemTitle: "伽罗粽",
-            itemImg: "日抛1/日抛1-伽罗棕-商品图.jpg"
-        }, {
-            itemTitle: "柔咖棕",
-            itemImg: "日抛1/日抛1-柔咖棕-商品图.jpg"
-        }, {
-            itemTitle: "丝绒棕",
-            itemImg: "日抛1/日抛1-丝绒棕-商品图.jpg"
-        }]
-    })
-    // console.log(goodDetails);
+    goodId.value = row.goodId;
+    // console.log(row.goodId);
 };
 
 
