@@ -1,29 +1,26 @@
 <template>
     <nav>
-        <van-icon class="back" name="arrow-left" @click="$router.back()"/>
+        <van-icon class="back" name="arrow-left" @click="$router.back()" />
         <p class="title">地址列表</p>
     </nav>
     <!-- 添加地址或编辑地址 -->
     <!-- 底部弹出 -->
-    <van-popup v-model:show="show" closeable position="bottom"
-               class="addressPopup">
+    <van-popup v-model:show="show" closeable position="bottom" class="addressPopup">
         <van-address-edit :area-list="areaList" :show-delete="isEdit" show-set-default show-search-result
-                          :area-columns-placeholder="['请选择', '请选择', '请选择']"
-                          :address-info="addressInfo"
-                          @save="onSave"
-                          @delete="onDelete"/>
+            :area-columns-placeholder="['请选择', '请选择', '请选择']" :address-info="addressInfo" @save="onSave"
+            @delete="onDelete" />
     </van-popup>
     <!-- 地址列表 -->
     <div style="min-height: calc(100vh - 4rem);">
-        <van-address-list v-model="chosenAddressId" :list="list" default-tag-text="默认"
-                          @select="onSelect" @add="onAdd" @edit="onEdit"/>
+        <van-address-list v-model="chosenAddressId" :list="list" default-tag-text="默认" @select="onSelect" @add="onAdd"
+            @edit="onEdit" />
     </div>
 </template>
 <script setup>
-import {ref, reactive, getCurrentInstance} from 'vue';
-import {areaList} from '@vant/area-data';
+import { ref, reactive, getCurrentInstance } from 'vue';
+import { areaList } from '@vant/area-data';
 
-const {proxy} = getCurrentInstance();
+const { proxy } = getCurrentInstance();
 /* 联系人 */
 const chosenAddressId = ref(1);
 const list = ref([{
@@ -112,7 +109,7 @@ const onSave = (item) => {
                 if (listItem.id === item.addressId) {
                     listItem.name = item.name;
                     listItem.tel = item.tel;
-                    listItem.address = item.province + item.city + item.county;
+                    listItem.address = item.province + item.city + item.county + item.addressDetail;
                     if (item.isDefault) {
                         //设置默认联系人
                         emptyDefault();
