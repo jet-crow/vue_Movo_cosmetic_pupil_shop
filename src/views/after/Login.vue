@@ -29,7 +29,7 @@ function jump(){
             'user': user.value,
             'password': password.value
         })).then(res => {
-            console.log(res.data.data.isAdmin);
+            // console.log(res.data.data.isAdmin);
             if (res.data.status === 500 || !res.data.data.isAdmin) {
                 showFailToast('登錄失敗');
                 return;
