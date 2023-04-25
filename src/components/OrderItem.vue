@@ -46,7 +46,7 @@
 </template>
 
 <script setup>
-import {defineProps, ref, getCurrentInstance, computed} from 'vue';
+import {ref, getCurrentInstance, computed} from 'vue';
 
 const {proxy} = getCurrentInstance();
 const props = defineProps(['state', 'orderItem']);

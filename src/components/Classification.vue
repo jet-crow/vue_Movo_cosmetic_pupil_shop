@@ -24,7 +24,6 @@
 </template>
 <script setup>
 import router from '@/router';
-import { defineEmits } from 'vue'
 
 const props = defineProps(['chose']);
 const emit = defineEmits(['updateChose'])//注册方法
