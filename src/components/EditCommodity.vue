@@ -137,6 +137,7 @@
 /*分类下拉选择框*/
 import {ref, getCurrentInstance} from "vue";
 import {Plus} from '@element-plus/icons-vue'
+import { ElMessage } from "element-plus";
 
 const {proxy} = getCurrentInstance();
 const props = defineProps({
@@ -291,6 +292,7 @@ const submit = () => {
                 goodTypesList: goodTypesList
             }).then(rAdd => {
                 console.log("添加成功")
+                proxy.$showSuccessToast('添加成功');
                 console.log(rAdd);
             });
         } else {//修改商品
@@ -327,7 +329,7 @@ const submit = () => {
                 goods: goods,
                 goodTypesList: goodTypesList
             }).then(rAdd => {
-                console.log("添加成功")
+            proxy.$showSuccessToast('修改成功');
                 console.log(rAdd);
             });
         }

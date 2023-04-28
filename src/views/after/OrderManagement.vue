@@ -63,7 +63,7 @@ proxy.$api.get('/order/admin/queryOrder').then(res => {
 const search = ref('');
 const filterOrderData = computed(() => {
     return orderData.value.filter((data) => !search.value ||
-        (data.orderId + "").includes(search.value));
+        (data.oderId + "").includes(search.value));
 });
 
 // 改变状态

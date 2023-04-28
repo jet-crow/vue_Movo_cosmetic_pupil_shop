@@ -100,7 +100,7 @@ const onSave = (item) => {
         proxy.$api.put("/address/user/updateMyAddress", proxy.$qs.stringify({
             addressId: item.addressId,
             consignee: item.name,
-            tel: item.tel,
+            tel: item.tel+"",
             address: item.province + item.city + item.county,
             detailedAddress: item.addressDetail,
             defaultContact: item.isDefault ? 1 : 0
